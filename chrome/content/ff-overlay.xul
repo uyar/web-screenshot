@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="chrome://screenshoter/skin/screenshoter.css"?>
+<!DOCTYPE window SYSTEM "chrome://screenshoter/locale/Screenshoter.dtd">
+
+<overlay id="screenshoter-overlay" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<script type="application/x-javascript" src="chrome://screenshoter/content/ff-overlay.js" />
+	<script type="application/x-javascript" src="chrome://screenshoter/content/options.js" />
+	<script type="application/x-javascript">
+		<![CDATA[
+		window.addEventListener("load", function(event){Screenshoter.onLoad(event);}, true);
+		]]>
+	</script>
+	
+	
+	<commandset>
+		<command id="Screenshoter_button_click_cmd"       oncommand="Screenshoter.onButClick()" />
+		<command id="Screenshoter_save_complete_cmd"      oncommand="Screenshoter.saveComplete()" />
+		<command id="Screenshoter_save_visible_cmd"       oncommand="Screenshoter.saveVisible()" />
+		<command id="Screenshoter_save_selection_cmd"     oncommand="Screenshoter.saveSelection()" />
+		<command id="Screenshoter_save_as_complete_cmd"   oncommand="Screenshoter.saveAsComplete()" />
+		<command id="Screenshoter_save_as_visible_cmd"    oncommand="Screenshoter.saveAsVisible()" />
+		<command id="Screenshoter_save_as_selection_cmd"  oncommand="Screenshoter.saveAsSelection()" />
+		<command id="Screenshoter_copy_complete_cmd"      oncommand="Screenshoter.copyComplete()" />
+		<command id="Screenshoter_copy_visible_cmd"       oncommand="Screenshoter.copyVisible()" />
+		<command id="Screenshoter_copy_selection_cmd"     oncommand="Screenshoter.copySelection()" />
+		<command id="Screenshoter_options_cmd"            oncommand="Screenshoter.openOptions()" />
+		<command id="Screenshoter_about_cmd"              oncommand="Screenshoter.openAbout()" />
+		<command id="Screenshoter_save_complete_jpeg_cmd" oncommand="Screenshoter.saveCompleteJpeg()" />
+		<command id="Screenshoter_save_complete_png_cmd"  oncommand="Screenshoter.saveCompletePng()" />
+	</commandset>
+	
+	
+	<stack><keyset id="Screenshoter_keyset"/></stack>
+	
+	
+	<toolbarpalette id="BrowserToolbarPalette">
+		<toolbarbutton
+			id="Screenshoter-toolbar-button"
+			label="&screenshoter.label;"
+			tooltiptext="&screenshoter.tooltip;"
+			type="menu-button"
+			class="toolbarbutton-1"
+			command="Screenshoter_button_click_cmd">
+			<menupopup>
+				<menu label="&screenshoter.complete.page.label;">
+					<menupopup>
+						<menuitem label="&screenshoter.save.label;"    command="Screenshoter_save_complete_cmd" />
+						<menuitem label="&screenshoter.save.as.label;" command="Screenshoter_save_as_complete_cmd" />
+						<menuitem label="&screenshoter.copy.label;"    command="Screenshoter_copy_complete_cmd" />
+					</menupopup>
+				</menu>
+				<menu label="&screenshoter.visible.portion.label;">
+					<menupopup>
+						<menuitem label="&screenshoter.save.label;"    command="Screenshoter_save_visible_cmd" />
+						<menuitem label="&screenshoter.save.as.label;" command="Screenshoter_save_as_visible_cmd" />
+						<menuitem label="&screenshoter.copy.label;"    command="Screenshoter_copy_visible_cmd" />
+					</menupopup>
+				</menu>
+				<menu label="&screenshoter.selection.label;">
+					<menupopup>
+						<menuitem label="&screenshoter.save.label;"    command="Screenshoter_save_selection_cmd" />
+						<menuitem label="&screenshoter.save.as.label;" command="Screenshoter_save_as_selection_cmd" />
+						<menuitem label="&screenshoter.copy.label;"    command="Screenshoter_copy_selection_cmd" />
+					</menupopup>
+				</menu>
+				<menuseparator />
+				<menuitem label="&screenshoter.options;" command="Screenshoter_options_cmd" />
+			</menupopup>
+		</toolbarbutton>
+	</toolbarpalette>
+	
+	
+	<popup id="contentAreaContextMenu">
+		<menu
+			label="Screenshoter"
+			id="screenshoter-contextmenu1"
+			insertafter="context-sep-selectall,context-sep-stop,context-sep-copylink"
+			class="menu-iconic"
+			image="chrome://screenshoter/skin/shot_16x16.png">
+			<menupopup>
+				<menu label="&screenshoter.complete.page.label;">
+					<menupopup>
+						<menuitem label="&screenshoter.save.label;"    command="Screenshoter_save_complete_cmd" />
+						<menuitem label="&screenshoter.save.as.label;" command="Screenshoter_save_as_complete_cmd" />
+						<menuitem label="&screenshoter.copy.label;"    command="Screenshoter_copy_complete_cmd" />
+					</menupopup>
+				</menu>
+				<menu label="&screenshoter.visible.portion.label;">
+					<menupopup>
+						<menuitem label="&screenshoter.save.label;"    command="Screenshoter_save_visible_cmd" />
+						<menuitem label="&screenshoter.save.as.label;" command="Screenshoter_save_as_visible_cmd" />
+						<menuitem label="&screenshoter.copy.label;"    command="Screenshoter_copy_visible_cmd" />
+					</menupopup>
+				</menu>
+				<menu label="&screenshoter.selection.label;">
+					<menupopup>
+						<menuitem label="&screenshoter.save.label;"    command="Screenshoter_save_selection_cmd" />
+						<menuitem label="&screenshoter.save.as.label;" command="Screenshoter_save_as_selection_cmd" />
+						<menuitem label="&screenshoter.copy.label;"    command="Screenshoter_copy_selection_cmd" />
+					</menupopup>
+				</menu>
+				<menuseparator />
+				<menuitem label="&screenshoter.options;" command="Screenshoter_options_cmd" />
+			</menupopup>
+		</menu>
+	</popup>
+	
+	
+</overlay>

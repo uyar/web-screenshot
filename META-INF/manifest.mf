@@ -1,0 +1,77 @@
+Manifest-Version: 1.0
+
+Name: install.rdf
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: BmsBBvfjtLY0qy/TaBHfyQ==
+SHA1-Digest: 9dVZR/KlJXEk15dStjcU0jH+6hE=
+
+Name: chrome.manifest
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: cy/7JgyZDP2/H0TlB43oLA==
+SHA1-Digest: zE8qzOdIE1a9O4a8m/++MWFM6Ik=
+
+Name: chrome/content/ff-overlay.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ERIzAXyEZUzw6ezVzrkMQA==
+SHA1-Digest: gSE/HUowV6V32RbocWDMNSxglNc=
+
+Name: chrome/content/ff-overlay.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: tEE+SpaDuYuaeuYIyXpZnA==
+SHA1-Digest: ID28OcNZjpaCPU7KzW7rYim3eBo=
+
+Name: chrome/content/options.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: M0vLpOUSPV+bfcnwco9M3A==
+SHA1-Digest: 5+vLvl6hx7uqb4VHpx0A17Doxn0=
+
+Name: chrome/content/options.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: /tO3VNt0iNdipb7EKG6kzg==
+SHA1-Digest: mpuqLH7CYA4Ju2hbkJ6i/5dANu8=
+
+Name: chrome/locale/en-US/Screenshoter.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: /Pw6VUJZDiBjgfw6W2tkIw==
+SHA1-Digest: tI5NvlEvf8PfPO1pTi7/u9T/ieA=
+
+Name: chrome/locale/fr/Screenshoter.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Oph9oKJAVwlc/KBoz3Y6OA==
+SHA1-Digest: g2+TxI7NUiNwuri8CSrIN3c1QiA=
+
+Name: chrome/locale/it/Screenshoter.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ybLPL8FaYyXr1w9xO4gX4Q==
+SHA1-Digest: GRRKcRKuvgTjH1aQdof48adcCtM=
+
+Name: chrome/skin/logo.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: GwT6xtlxIgsoEoJEjbu4Ag==
+SHA1-Digest: EkyXv+fgPGipaZWi3UcqVv8YmW4=
+
+Name: chrome/skin/screenshoter.css
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: lbi6DcpA8Y5Cvt9S5ADHYQ==
+SHA1-Digest: NrdaGtGGQ+6CO10kaPiytdfaiiI=
+
+Name: chrome/skin/shot_16x16.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 2QvUY3Q4wm1IVNbxFiRrvA==
+SHA1-Digest: ToTaIHO7VrPeQt6mKgOCShZbT5Q=
+
+Name: chrome/skin/shot_24x24.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: r4L6t9GF8a0zAmjrZnnUPg==
+SHA1-Digest: EJMX/nbJZE4vkqD8M4YJcCoSWP8=
+
+Name: chrome/skin/shot_32x32.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: xi+xEHZuygWzont80v/y9Q==
+SHA1-Digest: 41fk1eboZ9ZNgnmGjwUu+q2LHb0=
+
+Name: defaults/preferences/prefs.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Bogpm8lNXvzxwpK0tzxfiw==
+SHA1-Digest: 8YnAD4zg3xJTGVohzfsEGPg0vK4=
+

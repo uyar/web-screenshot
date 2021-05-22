@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+	<Description about="urn:mozilla:install-manifest">
+		<em:id>{d9babd10-47de-11df-9879-0800200c9a67}</em:id>
+		<em:type>2</em:type>
+		<em:name>Screenshoter Fixed</em:name>
+		<em:version>1.12</em:version>
+		<em:creator>spriditis (FF18+ fixes, new changes)</em:creator>
+		
+		<em:description>Pretty simple and sexy screen capturing tool (FF v18+ fix)</em:description>
+		<em:optionsURL>chrome://screenshoter/content/options.xul</em:optionsURL>
+		<em:iconURL>chrome://screenshoter/skin/logo.png</em:iconURL>
+		<em:targetApplication>
+			<Description>
+				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id><!-- Firefox -->
+				<em:minVersion>3.0</em:minVersion>
+				<em:maxVersion>51.*</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+		<em:multiprocessCompatible>false</em:multiprocessCompatible>
+		
+		<em:contributor>Alexei Matveev (Author of original Screenshoter)</em:contributor>
+		<em:contributor>Oleksandr Popov (Screengrab: hotkey handling)</em:contributor>
+		<em:contributor>Goofy (French translation)</em:contributor>
+		<em:contributor>francesco.sampoli (Italian translation)</em:contributor>
+	</Description>
+</RDF>

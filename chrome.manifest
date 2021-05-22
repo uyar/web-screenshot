@@ -1,0 +1,13 @@
+#https://developer.mozilla.org/en-US/docs/Chrome_Registration
+
+content   screenshoter   chrome/content/
+content   screenshoter   chrome/content/ contentaccessible=yes
+
+overlay   chrome://browser/content/browser.xul          chrome://screenshoter/content/ff-overlay.xul
+
+locale    screenshoter   en-US                          chrome/locale/en-US/
+locale    screenshoter   fr                             chrome/locale/fr/
+locale    screenshoter   it                             chrome/locale/it/
+
+skin      screenshoter   classic/1.0                    chrome/skin/
+style     chrome://global/content/customizeToolbar.xul  chrome://screenshoter/skin/screenshoter.css
