@@ -11,8 +11,8 @@
     <em:contributor>Alexei Matveev</em:contributor>
     <em:contributor>Oleksandr Popov</em:contributor>
     <em:homepageURL>https://addons.palemoon.org/addon/web-screenshot/</em:homepageURL>
-    <em:iconURL>chrome://screenshoter/skin/logo.png</em:iconURL>
-    <em:optionsURL>chrome://screenshoter/content/options.xul</em:optionsURL>
+    <em:iconURL>chrome://web-screenshot/skin/logo.png</em:iconURL>
+    <em:optionsURL>chrome://web-screenshot/content/options.xul</em:optionsURL>
 
     <!-- Pale Moon -->
     <em:targetApplication>

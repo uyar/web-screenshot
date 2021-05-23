@@ -1,9 +1,6 @@
-content   screenshoter   chrome/content/
-content   screenshoter   chrome/content/ contentaccessible=yes
-
-overlay   chrome://browser/content/browser.xul          chrome://screenshoter/content/ff-overlay.xul
-
-locale    screenshoter   en-US                          chrome/locale/en-US/
-
-skin      screenshoter   classic/1.0                    chrome/skin/
-style     chrome://global/content/customizeToolbar.xul  chrome://screenshoter/skin/screenshoter.css
+content web-screenshot chrome/content/
+content web-screenshot chrome/content/ contentaccessible=yes
+overlay chrome://browser/content/browser.xul chrome://web-screenshot/content/ff-overlay.xul
+locale web-screenshot en-US chrome/locale/en-US/
+skin web-screenshot classic/1.0 chrome/skin/
+style chrome://global/content/customizeToolbar.xul chrome://web-screenshot/skin/web-screenshot.css

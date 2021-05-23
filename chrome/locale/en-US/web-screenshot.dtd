@@ -1,0 +1,40 @@
+<!-- icon submenus strings -->
+<!ENTITY screenshot.label "Web Screenshot">
+<!ENTITY screenshot.tooltip "Web Screenshot">
+<!ENTITY screenshot.save.label "Save">
+<!ENTITY screenshot.save.as.label "Save As…">
+<!ENTITY screenshot.copy.label "Copy…">
+<!ENTITY screenshot.complete.page.label "Complete Page">
+<!ENTITY screenshot.visible.portion.label "Visible Portion">
+<!ENTITY screenshot.selection.label "Selection">
+<!ENTITY screenshot.options "Options">
+<!-- options window strings -->
+<!ENTITY screenshot.dialog.screenshot.preferences "Web Screenshot Preferences">
+<!ENTITY screenshot.dialog.reset "Reset">
+<!ENTITY screenshot.caption.options "Options">
+<!ENTITY screenshot.radio.save "Save">
+<!ENTITY screenshot.radio.save.as "Save As">
+<!ENTITY screenshot.radio.copy.to.clipboard "Copy to Clipboard">
+<!ENTITY screenshot.radio.copy "Copy">
+<!ENTITY screenshot.radio.complete.page "Complete Page">
+<!ENTITY screenshot.radio.visible.portion "Visible Portion">
+<!ENTITY screenshot.radio.selection "Selection">
+<!ENTITY screenshot.caption.default.save.as "Default Save As">
+<!ENTITY screenshot.button.browse "Browse">
+<!ENTITY screenshot.checkbox.show.in.firefox.dlmanager "Show files in Firefox Download Manager">
+<!ENTITY screenshot.checkbox.show.screenshot.files.in.dlmanager "Show screenshot files in Firefox Download Manager">
+<!ENTITY screenshot.caption.save.notification "Save Notification">
+<!ENTITY screenshot.radiogroup.disable.if.you.are.using.dlstatubar "Disable if you are using 'Download Status Bar' or similar">
+<!ENTITY screenshot.radio.off "Off">
+<!ENTITY screenshot.radio.shown.popup "Show Popup">
+<!ENTITY screenshot.caption.hotkeys "Hotkeys (Leave empty to disable)">
+<!ENTITY screenshot.label.save.complete.page "Save Complete Page">
+<!ENTITY screenshot.label.save.visible.page "Save Visible Page">
+<!ENTITY screenshot.label.save.selection "Save Selection">
+<!ENTITY screenshot.show.in.context.menu "Show Web Screenshot in context menu">
+<!ENTITY screenshot.caption.filename.template "Filename template">
+<!ENTITY screenshot.radio.template.datetime "Date_Time">
+<!ENTITY screenshot.radio.template.domain "Domain_Date_Time">
+<!ENTITY screenshot.radio.template.title "Title_Date_Time">
+<!ENTITY screenshot.radiogroup.template.text "Choose how to name screenshot files">
+<!ENTITY screenshot.description.hotkey.already.in.use "Hotkey already in use ()">

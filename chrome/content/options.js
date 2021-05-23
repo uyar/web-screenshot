@@ -4,7 +4,7 @@
 var gScreenshoterOptions = {
 	pref: Components.classes["@mozilla.org/preferences-service;1"]
 			.getService(Components.interfaces.nsIPrefService)
-			.getBranch("extensions.Screenshoter."),
+			.getBranch("extensions.web-screenshot."),
 
 	getPref: function(name, type, def_value) {
 		var v = def_value;
@@ -159,7 +159,7 @@ var gScreenshoterOptions = {
 	ResetDefaults: function() {
 		var prefDef = Components.classes["@mozilla.org/preferences-service;1"]
 			.getService(Components.interfaces.nsIPrefService)
-			.getDefaultBranch("extensions.Screenshoter.");
+			.getDefaultBranch("extensions.web-screenshot.");
 
 		gScreenshoterOptions.setDefaultsRadio("default_action", prefDef.getCharPref("default_action"));
 		gScreenshoterOptions.setDefaultsRadio("default_target", prefDef.getCharPref("default_target"));
@@ -259,7 +259,7 @@ var gScreenshoterOptions = {
 			return;
 		}
 
-		var warn = document.getElementById('screenshoter_dublicate_hotkey');
+		var warn = document.getElementById('screenshot_duplicate_hotkey');
 		warn.hidden = true;
 		if ( keyres ) {
 			var tag = warn.getAttribute('data-tag2');

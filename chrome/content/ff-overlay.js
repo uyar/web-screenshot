@@ -1,4 +1,3 @@
-
 var ScreenshoterSelector = {
 	BACKGROUND_DIV : "__ScreenshoterBgDiv",
 	GRAB_DIV       : "__ScreenshoterDiv",
@@ -58,7 +57,6 @@ var ScreenshoterSelector = {
 
 		ScreenshoterDiv.appendChild(backgroundDiv);
 
-
 		body.appendChild(ScreenshoterDiv);
 	},
 
@@ -78,7 +76,6 @@ var ScreenshoterSelector = {
 			var html = doc.getElementsByTagName("html")[0];
 			html.appendChild(selDiv);
 		}
-
 
 		ScreenshoterSelector.originX = event.pageX;
 		ScreenshoterSelector.originY = event.pageY;
@@ -211,7 +208,7 @@ var ScreenshoterSelector = {
 var Screenshoter = {
 	pref : Components.classes["@mozilla.org/preferences-service;1"]
 			.getService(Components.interfaces.nsIPrefService)
-			.getBranch("extensions.Screenshoter."),
+			.getBranch("extensions.web-screenshot."),
 	//prefBranch : null,
 	debugMode    : false,
 
@@ -264,7 +261,7 @@ var Screenshoter = {
 			// Restore button if was used, then remove old setting
 			var old_state = Screenshoter.isToolbarButtonUsed();
 			if (old_state) {
-				var btnId = "Screenshoter-toolbar-button";
+				var btnId = "screenshot-toolbar-button";
 				var bar = document.getElementById("nav-bar");
 				if (bar) {
 					var curSet  = bar.currentSet.split(",");
@@ -290,7 +287,7 @@ var Screenshoter = {
 
 	openOptions : function() {
 		var options = "chrome,centerscreen,modal";
-		window.openDialog("chrome://Screenshoter/content/options.xul", "", options, {});
+		window.openDialog("chrome://web-screenshot/content/options.xul", "", options, {});
 	},
 
 	saveComplete : function() {
@@ -767,9 +764,9 @@ var Screenshoter = {
 				.getService(Components.interfaces.nsIAlertsService);
 		try {
 			if (filedlg)
-				alertsService.showAlertNotification("chrome://screenshoter/skin/shot_24x24.png", "Screenshoter", message, true, "", Screenshoter.createAlertListener(), "Screenshoter notification");
+				alertsService.showAlertNotification("chrome://web-screenshot/skin/shot_24x24.png", "Web Screenshot", message, true, "", Screenshoter.createAlertListener(), "Web Screenshot notification");
 			else
-				alertsService.showAlertNotification("chrome://screenshoter/skin/shot_24x24.png", "Screenshoter", message, false, "", null, "Screenshoter notification");
+				alertsService.showAlertNotification("chrome://web-screenshot/skin/shot_24x24.png", "Web Screenshot", message, false, "", null, "Web Screenshot notification");
 		} catch(e) {}
 	},
 
@@ -984,10 +981,10 @@ var Screenshoter = {
 	refreshContextMenu: function() {
 		try {
 			if ( Screenshoter.isShown_in_contextmenu() ) {
-				document.getElementById("screenshoter-contextmenu1").style.display = "";
+				document.getElementById("screenshot-contextmenu1").style.display = "";
 			}
 			else {
-				document.getElementById("screenshoter-contextmenu1").style.display = "none";
+				document.getElementById("screenshot-contextmenu1").style.display = "none";
 			}
 		} catch(e) {
 		}
