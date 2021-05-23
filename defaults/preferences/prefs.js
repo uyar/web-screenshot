@@ -1,4 +1,3 @@
-pref("extensions.web-screenshot.use_toolbar", true); //marked for removal
 pref("extensions.web-screenshot.default_action", "save");
 pref("extensions.web-screenshot.default_target", "getComplete");
 pref("extensions.web-screenshot.default_type", "image/png");

@@ -12,7 +12,6 @@ var ScreenshoterSelector = {
 	offsetX : null,
 	offsetY : null,
 
-
 	isSelecting: function(){
 		var win = Screenshoter.getWindowsContent();
 		var doc = win.document;
@@ -218,8 +217,6 @@ var Screenshoter = {
 		}
 		Screenshoter.pref.addObserver("", Screenshoter, false);
 
-		Screenshoter.install();
-
 		setTimeout(function() {
 			Screenshoter.refreshContextMenu();
 
@@ -242,46 +239,6 @@ var Screenshoter = {
 			case "use_incontextmenu":
 				Screenshoter.refreshContextMenu();
 			break;
-		}
-	},
-	//observe : function(subject, topic, data) {
-	//	if (topic == "nsPref:changed") {
-	//		if (data == "use_toolbar"){
-	//			var btnId = "Screenshoter-toolbaritem";
-	//			var btn = document.getElementById(btnId);
-	//			if (btn)
-	//				btn.setAttribute("hidden", !Screenshoter.isToolbarButtonUsed());
-	//		}
-	//	}
-	//},
-
-	install : function() {
-		try {
-
-			// Restore button if was used, then remove old setting
-			var old_state = Screenshoter.isToolbarButtonUsed();
-			if (old_state) {
-				var btnId = "screenshot-toolbar-button";
-				var bar = document.getElementById("nav-bar");
-				if (bar) {
-					var curSet  = bar.currentSet.split(",");
-					var index = curSet.indexOf(btnId);
-					if (index == -1) {
-						curSet.push(btnId);
-					}
-					bar.setAttribute("currentset", curSet.join(","));
-					bar.currentSet = curSet.join(",");
-					document.persist(bar.id, "currentset");
-					try {
-						BrowserToolboxCustomizeDone(true);
-					}
-					catch (e) {};
-				}
-
-				Screenshoter.pref.setBoolPref("use_toolbar", false);
-			}
-
-		} catch (e) {
 		}
 	},
 
@@ -798,20 +755,6 @@ var Screenshoter = {
 		var operations = [Screenshoter.getDefaultTarget(), Screenshoter.getDefaultAction()];
 		Screenshoter.processOperation(operations);
 	},
-
-	isToolbarButtonUsed: function(){
-		var u = false;
-		try{
-			u = Screenshoter.pref.getBoolPref("use_toolbar");
-		} catch(e){
-		}
-		return u;
-	},
-
-	//useToolbarButton: function(useButton){
-	//	useButton = (!useButton) ? false : true;
-	//	Screenshoter.pref.setBoolPref("use_toolbar", useButton)
-	//},
 
 	isNotificationType: function(){
 		var type = "off";
