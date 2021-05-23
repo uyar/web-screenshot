@@ -6,22 +6,22 @@
 <dialog
   id="Screenshoter-preferences"
   title="&screenshoter.dialog.screenshoter.options;"
-  
+
   buttons="extra2,accept,cancel"
   buttonlabelextra2="&screenshoter.dialog.reset;"
-  
+
   onload="gScreenshoterOptions.onLoad()"
   ondialogaccept="return gScreenshoterOptions.doOk();"
   ondialogextra2="return gScreenshoterOptions.ResetDefaults()"
-  
+
   flex="1"
   persist="screenX screenY"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   style="padding-top:1px;">
-	
+
 	<script type="application/x-javascript" src="chrome://Screenshoter/content/ff-overlay.js" />
 	<script type="application/x-javascript" src="chrome://Screenshoter/content/options.js" />
-	
+
 	<groupbox style="min-width:340px;">
 		<caption label="&screenshoter.caption.options;" />
 		<hbox>
@@ -55,13 +55,13 @@
 				</hbox>
 				<hbox>
 					<radio label="JPEG" value="image/jpeg"/>
-					<scale id="JPGImageQuality" value="80" min="1" max="100" onchange="gScreenshoterOptions.updateJPGImageQuality(this.value);" /> 
+					<scale id="JPGImageQuality" value="80" min="1" max="100" onchange="gScreenshoterOptions.updateJPGImageQuality(this.value);" />
 					<label id="JPGImageQuality_label" value="" />
 				</hbox>
 			</vbox>
 		</radiogroup>
 	</groupbox>
-	
+
 	<groupbox>
 		<caption label="&screenshoter.caption.filename.template;" />
 		<radiogroup orient="horizontal" id="filetemplate" tooltiptext="&screenshoter.radiogroup.template.text;">
@@ -70,22 +70,22 @@
 			<radio label="&screenshoter.radio.template.title;"    value="title" />
 		</radiogroup>
 	</groupbox>
-	
+
 	<groupbox>
 		<checkbox id="use_downloadmanager" label="&screenshoter.checkbox.show.in.firefox.dlmanager;" checked="true" tooltiptext="&screenshoter.checkbox.show.screenshot.files.in.dlmanager;" />
-		
+
 		<checkbox id="use_incontextmenu"   label="&screenshoter.show.in.context.menu;" checked="true" tooltiptext="&screenshoter.show.in.context.menu;" observes="use_incontextmenu" />
 	</groupbox>
-	
+
 	<groupbox>
 		<caption label="&screenshoter.caption.save.notification;" />
-		
+
 		<radiogroup orient="horizontal" id="notification" tooltiptext="&screenshoter.radiogroup.disable.if.you.are.using.dlstatubar;">
 			<radio label="&screenshoter.radio.off;" value="off" />
 			<radio label="&screenshoter.radio.shown.popup;" value="popup" />
 		</radiogroup>
 	</groupbox>
-	
+
 	<groupbox>
 		<caption label="&screenshoter.caption.hotkeys;" />
 		<vbox>
