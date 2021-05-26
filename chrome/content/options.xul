@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://browser/skin/preferences/preferences.css"?>
-<!DOCTYPE dialog SYSTEM "chrome://web-screenshot/locale/web-screenshot.dtd">
-<dialog
+<!DOCTYPE prefwindow SYSTEM "chrome://web-screenshot/locale/web-screenshot.dtd">
+<prefwindow
     id="web-screenshot-preferences"
     title="&screenshot.dialog.screenshot.preferences;"
+
     buttons="extra2,accept,cancel"
     buttonlabelextra2="&screenshot.dialog.reset;"
 
@@ -12,73 +13,99 @@
     ondialogaccept="return gScreenshoterOptions.doOk();"
     ondialogextra2="return gScreenshoterOptions.ResetDefaults()"
 
-    flex="1"
-    persist="screenX screenY"
-    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-    style="padding-top:1px;">
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <script type="application/x-javascript"
       src="chrome://web-screenshot/content/ff-overlay.js" />
   <script type="application/x-javascript"
       src="chrome://web-screenshot/content/options.js" />
 
-  <groupbox style="min-width:340px;">
-    <caption label="&screenshot.caption.options;" />
-      <hbox>
-        <vbox>
-          <radiogroup orient="vertical" id="default_action">
-            <radio
-                label="&screenshot.radio.save;"
-                value="save" />
-            <radio
-                label="&screenshot.radio.save.as;"
-                value="saveAs" />
-            <radio
-                label="&screenshot.radio.copy.to.clipboard;"
-                value="copy" />
-          </radiogroup>
-        </vbox>
-        <spacer style="min-width:30px;" />
-        <vbox>
-          <radiogroup orient="vertical" id="default_target">
-            <radio
-                label="&screenshot.radio.complete.page;"
-                value="getComplete" />
-            <radio
-                label="&screenshot.radio.visible.portion;"
-                value="getVisible" />
-            <radio
-                label="&screenshot.radio.selection;"
-                value="getSelection" />
-          </radiogroup>
-      </vbox>
-    </hbox>
-  </groupbox>
+  <prefpane id="web-screenshot-preferences-pane">
+     <preferences id="web-screenshot-all-preferences">
+       <preference
+           id="web-screenshot-default-action"
+           name="extensions.web-screenshot.defaultAction"
+           type="string" />
+       <preference
+           id="web-screenshot-default-target"
+           name="extensions.web-screenshot.defaultTarget"
+           type="string" />
+       <preference
+           id="web-screenshot-default-folder"
+           name="extensions.web-screenshot.defaultFolder"
+           type="string" />
+       <preference
+           id="web-screenshot-default-type"
+           name="extensions.web-screenshot.defaultType"
+           type="string" />
+       <preference
+           id="web-screenshot-jpeg-image-quality"
+           name="extensions.web-screenshot.JPEGImageQuality"
+           type="int" />
+     </preferences>
 
-  <groupbox>
-    <caption label="&screenshot.caption.default.save.as;" />
-    <hbox>
-      <textbox id="default_folder" flex="1" />
-      <button label="&screenshot.button.browse;"
-          oncommand="gScreenshoterOptions.changeSaveFolder()" />
-    </hbox>
-    <radiogroup orient="vertical" id="default_type">
-      <vbox>
-        <hbox>
-          <radio label="PNG" value="image/png" />
-        </hbox>
-        <hbox>
-          <radio label="JPEG" value="image/jpeg" />
-          <scale
-              id="JPGImageQuality"
-              value="80"
-              min="1"
-              max="100"
-              onchange="gScreenshoterOptions.updateJPGImageQuality(this.value);" />
-          <label id="JPGImageQuality_label" value="" />
-        </hbox>
-      </vbox>
-    </radiogroup>
-  </groupbox>
+     <groupbox style="min-width:340px;">
+       <caption label="&screenshot.caption.options;" />
+       <hbox>
+         <vbox>
+           <radiogroup orient="vertical" id="defaultAction"
+               preference="web-screenshot-default-action">
+             <radio
+                 label="&screenshot.radio.save;"
+                 value="save" />
+             <radio
+                 label="&screenshot.radio.save.as;"
+                 value="saveAs" />
+             <radio
+                 label="&screenshot.radio.copy.to.clipboard;"
+                 value="copy" />
+           </radiogroup>
+         </vbox>
+         <spacer style="min-width:30px;" />
+         <vbox>
+           <radiogroup orient="vertical" id="defaultTarget"
+               preference="web-screenshot-default-target">
+             <radio
+                 label="&screenshot.radio.complete.page;"
+                 value="getComplete" />
+             <radio
+                 label="&screenshot.radio.visible.portion;"
+                 value="getVisible" />
+             <radio
+                 label="&screenshot.radio.selection;"
+                 value="getSelection" />
+           </radiogroup>
+         </vbox>
+       </hbox>
+     </groupbox>
+
+    <groupbox>
+      <caption label="&screenshot.caption.default.save.as;" />
+      <hbox>
+        <textbox id="defaultFolder" flex="1"
+            preference="web-screenshot-default-folder" />
+        <button label="&screenshot.button.browse;"
+            oncommand="gScreenshoterOptions.changeSaveFolder()" />
+      </hbox>
+      <radiogroup orient="vertical" id="defaultType"
+          preference="web-screenshot-default-type">
+        <vbox>
+          <hbox>
+            <radio label="PNG" value="image/png" />
+          </hbox>
+          <hbox>
+            <radio label="JPEG" value="image/jpeg" />
+            <scale
+                id="JPGImageQuality"
+                preference="web-screenshot-jpeg-image-quality"
+                value="80"
+                min="1"
+                max="100"
+                onchange="gScreenshoterOptions.updateJPGImageQuality(this.value);" />
+            <label id="JPGImageQuality_label" value="" />
+          </hbox>
+        </vbox>
+      </radiogroup>
+    </groupbox>
 
   <groupbox>
     <caption label="&screenshot.caption.filename.template;" />
@@ -159,4 +186,5 @@
       </hbox>
     </vbox>
   </groupbox>
-</dialog>
+  </prefpane>
+</prefwindow>

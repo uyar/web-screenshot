@@ -1,7 +1,7 @@
-pref("extensions.web-screenshot.default_action", "save");
-pref("extensions.web-screenshot.default_target", "getComplete");
-pref("extensions.web-screenshot.default_type", "image/png");
-pref("extensions.web-screenshot.default_folder", "");
+pref("extensions.web-screenshot.defaultAction", "save");
+pref("extensions.web-screenshot.defaultTarget", "getComplete");
+pref("extensions.web-screenshot.defaultType", "image/png");
+pref("extensions.web-screenshot.defaultFolder", "");
 pref("extensions.web-screenshot.use_downloadmanager", true);
 pref("extensions.web-screenshot.JPGImageQuality", 92);
 pref("extensions.web-screenshot.notification", "popup");

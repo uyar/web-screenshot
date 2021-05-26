@@ -82,23 +82,22 @@ var gScreenshoterOptions = {
 	},
 
 	onLoad: function() {
-		gScreenshoterOptions.setRadio("default_action",          "save");
-		gScreenshoterOptions.setRadio("default_target",          "getComplete");
-		gScreenshoterOptions.setRadio("default_type",            "image/png");
-		document.getElementById("default_folder").value =        Screenshoter.getSaveFolder().path;
-		gScreenshoterOptions.setCheck("use_downloadmanager",     true);
-		gScreenshoterOptions.setText("JPGImageQuality",          "int", 80);
-		gScreenshoterOptions.setText("JPGImageQuality_label",    "text",
+		gScreenshoterOptions.setRadio("defaultAction", "save");
+		gScreenshoterOptions.setRadio("defaultTarget", "getComplete");
+		gScreenshoterOptions.setRadio("defaultType", "image/png");
+		document.getElementById("defaultFolder").value = Screenshoter.getSaveFolder().path;
+		gScreenshoterOptions.setCheck("use_downloadmanager", true);
+		gScreenshoterOptions.setText("JPGImageQuality", "int", 80);
+		gScreenshoterOptions.setText("JPGImageQuality_label", "text",
 				gScreenshoterOptions.getPref("JPGImageQuality",  "int", 80) +"%");
-		gScreenshoterOptions.setRadio("notification",            "popup");
-		gScreenshoterOptions.setCheck("use_incontextmenu",       true);
-		gScreenshoterOptions.setRadio("filetemplate",            "domain");
+		gScreenshoterOptions.setRadio("notification", "popup");
+		gScreenshoterOptions.setCheck("use_incontextmenu", true);
+		gScreenshoterOptions.setRadio("filetemplate", "domain");
 
 		gScreenshoterOptions.setHotkey("hotkey_save_complete" );  //'{"modifiers":["accel"],"key":"M","keycode":""}',       '');
 		gScreenshoterOptions.setHotkey("hotkey_save_visible"  );  //'{"modifiers":["accel","alt"],"key":"M","keycode":""}', '');
 		gScreenshoterOptions.setHotkey("hotkey_save_selection");  //'', '');
 	},
-
 
 	updateCheckPref: function(name) {
 		var v = document.getElementById(name).checked;
@@ -125,10 +124,10 @@ var gScreenshoterOptions = {
 		if (!gScreenshoterOptions.checkSaveFolder())
 			return false;
 
-		gScreenshoterOptions.updateRadioPref("default_action");
-		gScreenshoterOptions.updateRadioPref("default_target");
-		gScreenshoterOptions.updateRadioPref("default_type");
-		Screenshoter.setSaveFolder(document.getElementById("default_folder").value);
+		gScreenshoterOptions.updateRadioPref("defaultAction");
+		gScreenshoterOptions.updateRadioPref("defaultTarget");
+		gScreenshoterOptions.updateRadioPref("defaultType");
+		Screenshoter.setSaveFolder(document.getElementById("defaultFolder").value);
 		gScreenshoterOptions.updateCheckPref("use_downloadmanager");
 		gScreenshoterOptions.updateTextPref("JPGImageQuality", "int");
 		gScreenshoterOptions.updateRadioPref("notification");
@@ -156,35 +155,35 @@ var gScreenshoterOptions = {
 			}
 		}
 	},
+
 	ResetDefaults: function() {
 		var prefDef = Components.classes["@mozilla.org/preferences-service;1"]
 			.getService(Components.interfaces.nsIPrefService)
 			.getDefaultBranch("extensions.web-screenshot.");
 
-		gScreenshoterOptions.setDefaultsRadio("default_action", prefDef.getCharPref("default_action"));
-		gScreenshoterOptions.setDefaultsRadio("default_target", prefDef.getCharPref("default_target"));
-		gScreenshoterOptions.setDefaultsRadio("default_type",   prefDef.getCharPref("default_type"));
+		gScreenshoterOptions.setDefaultsRadio("defaultAction", prefDef.getCharPref("defaultAction"));
+		gScreenshoterOptions.setDefaultsRadio("defaultTarget", prefDef.getCharPref("defaultTarget"));
+		gScreenshoterOptions.setDefaultsRadio("defaultType", prefDef.getCharPref("defaultType"));
 
-		document.getElementById("use_downloadmanager").checked  = prefDef.getBoolPref("use_downloadmanager");
-		document.getElementById("use_incontextmenu").checked    = prefDef.getBoolPref("use_incontextmenu");
+		document.getElementById("use_downloadmanager").checked = prefDef.getBoolPref("use_downloadmanager");
+		document.getElementById("use_incontextmenu").checked = prefDef.getBoolPref("use_incontextmenu");
 
-		gScreenshoterOptions.updateJPGImageQuality(prefDef.getIntPref("JPGImageQuality"));
-		gScreenshoterOptions.setDefaultsRadio("notification",   prefDef.getCharPref("notification"));
+		gScreenshoterOptions.updateJPGImageQuality(prefDef.getIntPref("jpeg-image-quality"));
+		gScreenshoterOptions.setDefaultsRadio("notification", prefDef.getCharPref("notification"));
 
-		gScreenshoterOptions.setDefaultsRadio("filetemplate",   prefDef.getCharPref("filetemplate"));
+		gScreenshoterOptions.setDefaultsRadio("filetemplate", prefDef.getCharPref("filetemplate"));
 
-
-		var desktopPath = prefDef.getComplexValue("default_folder",
+		var desktopPath = prefDef.getComplexValue("defaultFolder",
 					Components.interfaces.nsISupportsString).data;
-		document.getElementById("default_folder").value = desktopPath;
+		document.getElementById("defaultFolder").value = desktopPath;
 		// if empty set path to desktop
 		if (!desktopPath) {
 			desktopPath = Screenshoter.getDefaultFolder();
-			document.getElementById("default_folder").value = desktopPath.path;
+			document.getElementById("defaultFolder").value = desktopPath.path;
 		}
 
-		gScreenshoterOptions.setHotkey("hotkey_save_complete",  prefDef.getCharPref("hotkey_save_complete"),  true);
-		gScreenshoterOptions.setHotkey("hotkey_save_visible",   prefDef.getCharPref("hotkey_save_visible"),   true);
+		gScreenshoterOptions.setHotkey("hotkey_save_complete", prefDef.getCharPref("hotkey_save_complete"),  true);
+		gScreenshoterOptions.setHotkey("hotkey_save_visible", prefDef.getCharPref("hotkey_save_visible"),   true);
 		gScreenshoterOptions.setHotkey("hotkey_save_selection", prefDef.getCharPref("hotkey_save_selection"), true);
 
 		return true;
@@ -195,17 +194,17 @@ var gScreenshoterOptions = {
 		var nsIFilePicker = Components.interfaces.nsIFilePicker;
 		var fp = Components.classes["@mozilla.org/filepicker;1"]
 					.createInstance(nsIFilePicker);
-		fp.init(window, "Select Directory to Store Screen Shots", nsIFilePicker.modeGetFolder);
+		fp.init(window, "Select directory to store screenshots", nsIFilePicker.modeGetFolder);
 		var res = null;
 		res = fp.show();
 		if (res == nsIFilePicker.returnOK) {
-			var element = document.getElementById("default_folder");
+			var element = document.getElementById("defaultFolder");
 			element.value = fp.file.path;
 		}
 	},
 
 	checkSaveFolder: function() {
-		var stDir = document.getElementById("default_folder").value;
+		var stDir = document.getElementById("defaultFolder").value;
 
 		var stDirFile = Components.classes["@mozilla.org/file/local;1"]
 					.createInstance(Components.interfaces.nsILocalFile);
@@ -224,7 +223,7 @@ var gScreenshoterOptions = {
 			}
 		}
 		else {
-			var r = confirm(stDir + " does not exis.\r\nDo you want to create now?");
+			var r = confirm(stDir + " does not exist.\r\nDo you want to create now?");
 			if (r == false)
 				return false;
 			try {
@@ -241,7 +240,6 @@ var gScreenshoterOptions = {
 		document.getElementById('JPGImageQuality').value = value;
 		document.getElementById('JPGImageQuality_label').value = value + '%';
 	},
-
 
 
 	handle_Hotkey: function(event, box) {
@@ -267,8 +265,6 @@ var gScreenshoterOptions = {
 			warn.hidden = false;
 		}
 	},
-
-
 
 
 //// Ideas from screengrab extension ;)

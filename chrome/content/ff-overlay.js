@@ -770,7 +770,7 @@ var Screenshoter = {
 	getDefaultMimeType : function() {
 		var type = "image/png";
 		try{
-			type = Screenshoter.pref.getCharPref("default_type");
+			type = Screenshoter.pref.getCharPref("defaultType");
 		} catch(e){
 		}
 		if (type!="image/png" && type!="image/jpeg")
@@ -781,13 +781,13 @@ var Screenshoter = {
 	setDefaultMimeType : function(type) {
 		if (type!="image/png" && type!="image/jpeg")
 			type = "image/png";
-		Screenshoter.pref.getCharPref("default_type", type);
+		Screenshoter.pref.getCharPref("defaultType", type);
 	},
 
 	getDefaultTarget: function(){
 		var target = "getComplete";
 		try{
-			target = Screenshoter.pref.getCharPref("default_target");
+			target = Screenshoter.pref.getCharPref("defaultTarget");
 		} catch(e){
 		}
 		if (!target)
@@ -798,13 +798,13 @@ var Screenshoter = {
 	setDefaultTarget: function(target){
 		if (target!="getComplete"&&target!="getVisible"&&target!="getSelection")
 			target = "getComplete";
-		Screenshoter.pref.getCharPref("default_target", target);
+		Screenshoter.pref.getCharPref("defaultTarget", target);
 	},
 
 	getDefaultAction: function(){
 		var action = "save";
 		try{
-			action = Screenshoter.pref.getCharPref("default_action");
+			action = Screenshoter.pref.getCharPref("defaultAction");
 		} catch(e){
 		}
 		if (!action)
@@ -815,7 +815,7 @@ var Screenshoter = {
 	setDefaultAction: function(action){
 		if (action!="save" && action!="saveAs" && action!="copy")
 			action = "save";
-		Screenshoter.pref.getCharPref("default_action", action);
+		Screenshoter.pref.getCharPref("defaultAction", action);
 	},
 
 	getDefaultFolder : function() {
@@ -838,7 +838,7 @@ var Screenshoter = {
 	getSaveFolder: function(){
 		var fileName = null;
 		try {
-			fileName = Screenshoter.pref.getComplexValue("default_folder",
+			fileName = Screenshoter.pref.getComplexValue("defaultFolder",
 					Components.interfaces.nsISupportsString).data;
 		} catch (e) {
 		}
@@ -866,7 +866,7 @@ var Screenshoter = {
 		if (!file.exists()) {
 			file.create(Components.interfaces.nsIFile.DIRECTORY_TYPE, parseInt("0775", 8));
 		}
-		Screenshoter.setUnicharPref("default_folder", file.path);
+		Screenshoter.setUnicharPref("defaultFolder", file.path);
 		return file;
 	},
 
@@ -878,7 +878,7 @@ var Screenshoter = {
 	},
 
 	setSaveFolder: function(dir) {
-		Screenshoter.setUnicharPref("default_folder", dir);
+		Screenshoter.setUnicharPref("defaultFolder", dir);
 	},
 
 	isDownloadManagerUsed: function(){
