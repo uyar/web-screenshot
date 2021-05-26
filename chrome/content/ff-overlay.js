@@ -236,62 +236,62 @@ var Screenshoter = {
 			return;
 
 		switch (data) {
-			case "use_incontextmenu":
+			case "showInContextMenu":
 				Screenshoter.refreshContextMenu();
 			break;
 		}
 	},
 
-	openOptions : function() {
+	openOptions: function() {
 		var options = "chrome,centerscreen,modal";
 		window.openDialog("chrome://web-screenshot/content/options.xul", "", options, {});
 	},
 
-	saveComplete : function() {
+	saveComplete: function() {
 		Screenshoter.processOperation(["getComplete", "save"]);
 	},
 
-	saveVisible : function() {
+	saveVisible: function() {
 		Screenshoter.processOperation(["getVisible", "save"]);
 	},
 
-	saveSelection : function() {
+	saveSelection: function() {
 		Screenshoter.processOperation(["getSelection", "save"]);
 	},
 
-	saveAsComplete : function() {
+	saveAsComplete: function() {
 		Screenshoter.processOperation(["getComplete", "saveAs"]);
 	},
 
-	saveAsVisible : function() {
+	saveAsVisible: function() {
 		Screenshoter.processOperation(["getVisible", "saveAs"]);
 	},
 
-	saveAsSelection : function() {
+	saveAsSelection: function() {
 		Screenshoter.processOperation(["getSelection", "saveAs"]);
 	},
 
-	copyComplete : function() {
+	copyComplete: function() {
 		Screenshoter.processOperation(["getComplete", "copy"]);
 	},
 
-	copyVisible : function() {
+	copyVisible: function() {
 		Screenshoter.processOperation(["getVisible", "copy"]);
 	},
 
-	copySelection : function() {
+	copySelection: function() {
 		Screenshoter.processOperation(["getSelection", "copy"]);
 	},
 
-	saveCompleteJpeg : function() {
+	saveCompleteJpeg: function() {
 		Screenshoter.processOperation(["getComplete", "saveJpeg"]);
 	},
 
-	saveCompletePng : function() {
+	saveCompletePng: function() {
 		Screenshoter.processOperation(["getComplete", "savePng"]);
 	},
 
-	processOperation : function(operations, data, delay) {
+	processOperation: function(operations, data, delay) {
 		if (operations.length == 0)
 			return;
 		if (!delay)
@@ -300,31 +300,31 @@ var Screenshoter = {
 		setTimeout(Screenshoter.doOperation, delay, op, operations, data);
 	},
 
-	doOperation : function(op, operations, data) {
+	doOperation: function(op, operations, data) {
 		try {
 			Screenshoter[op](operations, data);
 		} catch (e) {
 		}
 	},
 
-	getComplete : function(operations, data) {
+	getComplete: function(operations, data) {
 		operations = ["getContentFrame", "getCompletePage"].concat(operations);
 		Screenshoter.processOperation(operations, data);
 	},
 
-	getVisible : function(operations, data) {
+	getVisible: function(operations, data) {
 		operations = ["getContentWindow", "getVisiblePortion"].concat(operations);
 		Screenshoter.processOperation(operations, data);
 	},
 
-	getSelection : function(operations, data) {
+	getSelection: function(operations, data) {
 		var selectOperations;
 		selectOperations = ["startSelection"];
 		operations = selectOperations.concat(operations);
 		Screenshoter.processOperation(operations, data);
 	},
 
-	getContentFrame : function(operations, data) {
+	getContentFrame: function(operations, data) {
 		var win = document.commandDispatcher.focusedWindow;
 		if (!win || !(win.document instanceof HTMLDocument)) {
 			win = window.top.getBrowser().selectedBrowser.contentWindow;
@@ -332,12 +332,12 @@ var Screenshoter = {
 		Screenshoter.processOperation(operations, win);
 	},
 
-	getContentWindow : function(operations, data) {
+	getContentWindow: function(operations, data) {
 		var win = window.top.getBrowser().selectedBrowser.contentWindow;
 		Screenshoter.processOperation(operations, win);
 	},
 
-	getCompletePage : function(operations, data) {
+	getCompletePage: function(operations, data) {
 		var win = data;
 		var htmlDoc = win.document;
 		var htmlWin = win.content.window;
@@ -360,7 +360,7 @@ var Screenshoter = {
 			Screenshoter.processOperation(operations, canvas);
 	},
 
-	getVisiblePortion : function(operations, data) {
+	getVisiblePortion: function(operations, data) {
 		var win = data;
 		var htmlDoc = win.document;
 		var htmlWin = win.content.window;
@@ -375,7 +375,7 @@ var Screenshoter = {
 			Screenshoter.processOperation(operations, canvas);
 	},
 
-	startSelection : function(operations, data) {
+	startSelection: function(operations, data) {
 		var win = Screenshoter.getWindowsContent();
 		var doc = win.document;
 		operations.unshift("finishSelection");
@@ -394,7 +394,7 @@ var Screenshoter = {
 			Screenshoter.processOperation(operations, canvas);
 	},
 
-	save : function(operations, data) {
+	save: function(operations, data) {
 		var canvas = data;
 		var file = Screenshoter.getNewFile();
 
@@ -402,7 +402,7 @@ var Screenshoter = {
 		Screenshoter.processOperation(operations, file);
 	},
 
-	saveTemp : function(operations, data) {
+	saveTemp: function(operations, data) {
 		var canvas = data;
 		var file = Screenshoter.getTempFile();
 
@@ -572,8 +572,8 @@ var Screenshoter = {
 		try {
 			ctx.drawWindow(win, box.x, box.y, box.width, box.height, "rgba(0,0,0,0)");
 		} catch(e) {
-			Screenshoter.myDump('Screenshoter: FF inernal canvas.drawWindow call failed!');
-			Screenshoter.showNotificationPopup('FF inernal canvas.drawWindow call failed!', false);
+			Screenshoter.myDump('Web Screenshot: Internal canvas.drawWindow call failed!');
+			Screenshoter.showNotificationPopup('Internal canvas.drawWindow call failed!', false);
 			return false;
 		}
 		ctx.restore();
@@ -675,7 +675,7 @@ var Screenshoter = {
 			// displays a download dialog (remove these 3 lines for silent download)
 			var xfer = Components.classes["@mozilla.org/transfer;1"]
 				.createInstance(Components.interfaces.nsITransfer);
-			xfer.init(source, target, "Screenshoter", null, new Date(), null, persist, null);
+			xfer.init(source, target, "Screenshot", null, new Date(), null, persist, null);
 			persist.progressListener = xfer;
 		}
 
@@ -705,15 +705,13 @@ var Screenshoter = {
 				persist.saveURI(source, null, null, null, null, file);
 			}
 		}
-		if (Screenshoter.isNotificationType() == "popup") {
+		if (Screenshoter.getNotificationType() == "popup") {
 			//Screenshoter.myDump("popup notification");
 
 			Screenshoter.imgfile = file;
 			Screenshoter.showNotificationPopup("Screenshot saved", true);
 		}
 	},
-
-
 
 
 	showNotificationPopup: function(message, filedlg) {
@@ -750,16 +748,15 @@ var Screenshoter = {
 	},
 
 
-
 	onButClick: function(event){
 		var operations = [Screenshoter.getDefaultTarget(), Screenshoter.getDefaultAction()];
 		Screenshoter.processOperation(operations);
 	},
 
-	isNotificationType: function(){
+	getNotificationType: function(){
 		var type = "off";
 		try{
-			type = Screenshoter.pref.getCharPref("notification");
+			type = Screenshoter.pref.getCharPref("notificationType");
 		} catch(e){
 		}
 		if (type!="off" && type!="popup")
@@ -767,7 +764,7 @@ var Screenshoter = {
 		return type;
 	},
 
-	getDefaultMimeType : function() {
+	getDefaultMimeType: function() {
 		var type = "image/png";
 		try{
 			type = Screenshoter.pref.getCharPref("defaultType");
@@ -776,12 +773,6 @@ var Screenshoter = {
 		if (type!="image/png" && type!="image/jpeg")
 			type = "image/png";
 		return type;
-	},
-
-	setDefaultMimeType : function(type) {
-		if (type!="image/png" && type!="image/jpeg")
-			type = "image/png";
-		Screenshoter.pref.getCharPref("defaultType", type);
 	},
 
 	getDefaultTarget: function(){
@@ -795,12 +786,6 @@ var Screenshoter = {
 		return target;
 	},
 
-	setDefaultTarget: function(target){
-		if (target!="getComplete"&&target!="getVisible"&&target!="getSelection")
-			target = "getComplete";
-		Screenshoter.pref.getCharPref("defaultTarget", target);
-	},
-
 	getDefaultAction: function(){
 		var action = "save";
 		try{
@@ -812,13 +797,7 @@ var Screenshoter = {
 		return action;
 	},
 
-	setDefaultAction: function(action){
-		if (action!="save" && action!="saveAs" && action!="copy")
-			action = "save";
-		Screenshoter.pref.getCharPref("defaultAction", action);
-	},
-
-	getDefaultFolder : function() {
+	getDefaultFolder: function() {
 		var file = null;
 		try {
 			file = Components.classes["@mozilla.org/file/directory_service;1"]
@@ -884,7 +863,7 @@ var Screenshoter = {
 	isDownloadManagerUsed: function(){
 		var u = true;
 		try{
-			u = Screenshoter.pref.getBoolPref("use_downloadmanager");
+			u = Screenshoter.pref.getBoolPref("showInDLManager");
 		} catch(e){
 		}
 		return u;
@@ -892,7 +871,7 @@ var Screenshoter = {
 	isShown_in_contextmenu: function(){
 		var u = true;
 		try{
-			u = Screenshoter.pref.getBoolPref("use_incontextmenu");
+			u = Screenshoter.pref.getBoolPref("showInContextMenu");
 		} catch(e){
 		}
 		return u;
@@ -913,7 +892,7 @@ var Screenshoter = {
 	getFileTemplate: function() {
 		var value = "domain";
 		try{
-			value = Screenshoter.pref.getCharPref("filetemplate");
+			value = Screenshoter.pref.getCharPref("filenameTemplate");
 		} catch(e){
 		}
 		if (!value)

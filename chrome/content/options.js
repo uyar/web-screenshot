@@ -77,25 +77,13 @@ var gScreenshoterOptions = {
 		}
 
 		name = name.replace('hotkey_save_', 'Screenshoter_save_');
-		document.getElementById(name).value = text;
-		document.getElementById(name).hotkey_hash = key;
+		// document.getElementById(name).value = text;
+		// document.getElementById(name).hotkey_hash = key;
 	},
 
 	onLoad: function() {
-		gScreenshoterOptions.setRadio("defaultAction", "save");
-		gScreenshoterOptions.setRadio("defaultTarget", "getComplete");
-		gScreenshoterOptions.setRadio("defaultType", "image/png");
-		document.getElementById("defaultFolder").value = Screenshoter.getSaveFolder().path;
-		gScreenshoterOptions.setCheck("use_downloadmanager", true);
-		gScreenshoterOptions.setText("JPGImageQuality", "int", 80);
-		gScreenshoterOptions.setText("JPGImageQuality_label", "text",
-				gScreenshoterOptions.getPref("JPGImageQuality",  "int", 80) +"%");
-		gScreenshoterOptions.setRadio("notification", "popup");
-		gScreenshoterOptions.setCheck("use_incontextmenu", true);
-		gScreenshoterOptions.setRadio("filetemplate", "domain");
-
-		gScreenshoterOptions.setHotkey("hotkey_save_complete" );  //'{"modifiers":["accel"],"key":"M","keycode":""}',       '');
-		gScreenshoterOptions.setHotkey("hotkey_save_visible"  );  //'{"modifiers":["accel","alt"],"key":"M","keycode":""}', '');
+		gScreenshoterOptions.setHotkey("hotkey_save_complete");  //'{"modifiers":["accel"],"key":"M","keycode":""}',       '');
+		gScreenshoterOptions.setHotkey("hotkey_save_visible");  //'{"modifiers":["accel","alt"],"key":"M","keycode":""}', '');
 		gScreenshoterOptions.setHotkey("hotkey_save_selection");  //'', '');
 	},
 
@@ -119,27 +107,26 @@ var gScreenshoterOptions = {
 		gScreenshoterOptions.setPref(name, "text", (key ? JSON.stringify(key) : ''));
 	},
 
-
 	doOk: function() {
 		if (!gScreenshoterOptions.checkSaveFolder())
 			return false;
 
 		gScreenshoterOptions.updateRadioPref("defaultAction");
 		gScreenshoterOptions.updateRadioPref("defaultTarget");
-		gScreenshoterOptions.updateRadioPref("defaultType");
 		Screenshoter.setSaveFolder(document.getElementById("defaultFolder").value);
-		gScreenshoterOptions.updateCheckPref("use_downloadmanager");
+		gScreenshoterOptions.updateRadioPref("defaultType");
 		gScreenshoterOptions.updateTextPref("JPGImageQuality", "int");
-		gScreenshoterOptions.updateRadioPref("notification");
-		gScreenshoterOptions.updateCheckPref("use_incontextmenu");
-		gScreenshoterOptions.updateRadioPref("filetemplate");
+		gScreenshoterOptions.updateRadioPref("filenameTemplate");
+		gScreenshoterOptions.updateCheckPref("showInDLManager");
+		gScreenshoterOptions.updateCheckPref("showInContextMenu");
+		gScreenshoterOptions.updateRadioPref("notificationType");
 
-		gScreenshoterOptions.updateHotkeyPref("hotkey_save_complete");
-		gScreenshoterOptions.updateHotkeyPref("hotkey_save_visible");
-		gScreenshoterOptions.updateHotkeyPref("hotkey_save_selection");
+		// gScreenshoterOptions.updateHotkeyPref("hotkey_save_complete");
+		// gScreenshoterOptions.updateHotkeyPref("hotkey_save_visible");
+		// gScreenshoterOptions.updateHotkeyPref("hotkey_save_selection");
 
 		//activate hotkeys
-		gScreenshoterOptions.refreshHotkeys();
+		// gScreenshoterOptions.refreshHotkeys();
 
 		return true;
 	},
@@ -156,22 +143,13 @@ var gScreenshoterOptions = {
 		}
 	},
 
-	ResetDefaults: function() {
+	resetDefaults: function() {
 		var prefDef = Components.classes["@mozilla.org/preferences-service;1"]
 			.getService(Components.interfaces.nsIPrefService)
 			.getDefaultBranch("extensions.web-screenshot.");
 
 		gScreenshoterOptions.setDefaultsRadio("defaultAction", prefDef.getCharPref("defaultAction"));
 		gScreenshoterOptions.setDefaultsRadio("defaultTarget", prefDef.getCharPref("defaultTarget"));
-		gScreenshoterOptions.setDefaultsRadio("defaultType", prefDef.getCharPref("defaultType"));
-
-		document.getElementById("use_downloadmanager").checked = prefDef.getBoolPref("use_downloadmanager");
-		document.getElementById("use_incontextmenu").checked = prefDef.getBoolPref("use_incontextmenu");
-
-		gScreenshoterOptions.updateJPGImageQuality(prefDef.getIntPref("jpeg-image-quality"));
-		gScreenshoterOptions.setDefaultsRadio("notification", prefDef.getCharPref("notification"));
-
-		gScreenshoterOptions.setDefaultsRadio("filetemplate", prefDef.getCharPref("filetemplate"));
 
 		var desktopPath = prefDef.getComplexValue("defaultFolder",
 					Components.interfaces.nsISupportsString).data;
@@ -182,13 +160,22 @@ var gScreenshoterOptions = {
 			document.getElementById("defaultFolder").value = desktopPath.path;
 		}
 
+		gScreenshoterOptions.setDefaultsRadio("defaultType", prefDef.getCharPref("defaultType"));
+		gScreenshoterOptions.updateJPGImageQuality(prefDef.getIntPref("JPGImageQuality"));
+
+		document.getElementById("showInDLManager").checked = prefDef.getBoolPref("showInDLManager");
+		document.getElementById("showInContextMenu").checked = prefDef.getBoolPref("showInContextMenu");
+
+		gScreenshoterOptions.setDefaultsRadio("notificationType", prefDef.getCharPref("notificationType"));
+
+		gScreenshoterOptions.setDefaultsRadio("filenameTemplate", prefDef.getCharPref("filenameTemplate"));
+
 		gScreenshoterOptions.setHotkey("hotkey_save_complete", prefDef.getCharPref("hotkey_save_complete"),  true);
 		gScreenshoterOptions.setHotkey("hotkey_save_visible", prefDef.getCharPref("hotkey_save_visible"),   true);
 		gScreenshoterOptions.setHotkey("hotkey_save_selection", prefDef.getCharPref("hotkey_save_selection"), true);
 
-		return true;
+		return gScreenshoterOptions.doOk();
 	},
-
 
 	changeSaveFolder: function() {
 		var nsIFilePicker = Components.interfaces.nsIFilePicker;
@@ -240,7 +227,6 @@ var gScreenshoterOptions = {
 		document.getElementById('JPGImageQuality').value = value;
 		document.getElementById('JPGImageQuality_label').value = value + '%';
 	},
-
 
 	handle_Hotkey: function(event, box) {
 		var keyres = gScreenshoterOptions.validateInputKey(event, box);

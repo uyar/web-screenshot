@@ -4,14 +4,14 @@
 <!DOCTYPE prefwindow SYSTEM "chrome://web-screenshot/locale/web-screenshot.dtd">
 <prefwindow
     id="web-screenshot-preferences"
-    title="&screenshot.dialog.screenshot.preferences;"
+    title="&screenshot.dialog.screenshot.options;"
 
     buttons="extra2,accept,cancel"
     buttonlabelextra2="&screenshot.dialog.reset;"
 
     onload="gScreenshoterOptions.onLoad()"
     ondialogaccept="return gScreenshoterOptions.doOk();"
-    ondialogextra2="return gScreenshoterOptions.ResetDefaults()"
+    ondialogextra2="return gScreenshoterOptions.resetDefaults()"
 
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <script type="application/x-javascript"
@@ -38,13 +38,29 @@
            name="extensions.web-screenshot.defaultType"
            type="string" />
        <preference
-           id="web-screenshot-jpeg-image-quality"
-           name="extensions.web-screenshot.JPEGImageQuality"
+           id="web-screenshot-jpg-image-quality"
+           name="extensions.web-screenshot.JPGImageQuality"
            type="int" />
+       <preference
+           id="web-screenshot-filename-template"
+           name="extensions.web-screenshot.filenameTemplate"
+           type="string" />
+       <preference
+           id="web-screenshot-show-in-dlmanager"
+           name="extensions.web-screenshot.showInDLManager"
+           type="bool" />
+       <preference
+           id="web-screenshot-show-in-context-menu"
+           name="extensions.web-screenshot.showInContextMenu"
+           type="bool" />
+       <preference
+           id="web-screenshot-notification-type"
+           name="extensions.web-screenshot.notificationType"
+           type="string" />
      </preferences>
 
      <groupbox style="min-width:340px;">
-       <caption label="&screenshot.caption.options;" />
+       <caption label="&screenshot.caption.action;" />
        <hbox>
          <vbox>
            <radiogroup orient="vertical" id="defaultAction"
@@ -78,113 +94,113 @@
        </hbox>
      </groupbox>
 
+     <groupbox>
+       <caption label="&screenshot.caption.default.folder;" />
+       <hbox>
+         <textbox id="defaultFolder" flex="1"
+             preference="web-screenshot-default-folder" />
+         <button label="&screenshot.button.browse;"
+             oncommand="gScreenshoterOptions.changeSaveFolder()" />
+       </hbox>
+       <radiogroup orient="vertical" id="defaultType"
+           preference="web-screenshot-default-type">
+         <vbox>
+           <hbox>
+             <radio label="PNG" value="image/png" />
+           </hbox>
+           <hbox>
+             <radio label="JPEG" value="image/jpeg" />
+             <scale
+                 id="JPGImageQuality"
+                 preference="web-screenshot-jpg-image-quality"
+                 value="80"
+                 min="1"
+                 max="100"
+                 onchange="gScreenshoterOptions.updateJPGImageQuality(this.value);" />
+             <label id="JPGImageQuality_label" value="" />
+           </hbox>
+         </vbox>
+       </radiogroup>
+    </groupbox>
+
     <groupbox>
-      <caption label="&screenshot.caption.default.save.as;" />
-      <hbox>
-        <textbox id="defaultFolder" flex="1"
-            preference="web-screenshot-default-folder" />
-        <button label="&screenshot.button.browse;"
-            oncommand="gScreenshoterOptions.changeSaveFolder()" />
-      </hbox>
-      <radiogroup orient="vertical" id="defaultType"
-          preference="web-screenshot-default-type">
-        <vbox>
-          <hbox>
-            <radio label="PNG" value="image/png" />
-          </hbox>
-          <hbox>
-            <radio label="JPEG" value="image/jpeg" />
-            <scale
-                id="JPGImageQuality"
-                preference="web-screenshot-jpeg-image-quality"
-                value="80"
-                min="1"
-                max="100"
-                onchange="gScreenshoterOptions.updateJPGImageQuality(this.value);" />
-            <label id="JPGImageQuality_label" value="" />
-          </hbox>
-        </vbox>
+      <caption label="&screenshot.caption.filename.template;" />
+      <radiogroup orient="horizontal" id="filenameTemplate"
+          preference="web-screenshot-filename-template">
+        <radio label="&screenshot.radio.template.datetime;" value="date" />
+        <radio label="&screenshot.radio.template.domain;" value="domain" />
+        <radio label="&screenshot.radio.template.title;" value="title" />
       </radiogroup>
     </groupbox>
 
-  <groupbox>
-    <caption label="&screenshot.caption.filename.template;" />
-    <radiogroup orient="horizontal" id="filetemplate"
-        tooltiptext="&screenshot.radiogroup.template.text;">
-      <radio label="&screenshot.radio.template.datetime;" value="date" />
-      <radio label="&screenshot.radio.template.domain;" value="domain" />
-      <radio label="&screenshot.radio.template.title;" value="title" />
-    </radiogroup>
-  </groupbox>
+    <groupbox>
+      <checkbox
+          id="showInDLManager"
+          preference="web-screenshot-show-in-dlmanager"
+          label="&screenshot.checkbox.show.in.dlmanager;"
+          checked="true" />
+      <checkbox
+          id="showInContextMenu"
+          preference="web-screenshot-show-in-context-menu"
+          label="&screenshot.checkbox.show.in.context.menu;"
+          checked="true"
+          observes="use_incontextmenu" />
+    </groupbox>
 
-  <groupbox>
-    <checkbox
-        id="use_downloadmanager"
-        label="&screenshot.checkbox.show.in.firefox.dlmanager;"
-        checked="true"
-        tooltiptext="&screenshot.checkbox.show.screenshot.files.in.dlmanager;" />
-    <checkbox
-        id="use_incontextmenu"
-        label="&screenshot.show.in.context.menu;"
-        checked="true"
-        tooltiptext="&screenshot.show.in.context.menu;"
-        observes="use_incontextmenu" />
-  </groupbox>
+    <groupbox>
+      <caption label="&screenshot.caption.notification;" />
+      <radiogroup orient="horizontal" id="notificationType"
+          preference="web-screenshot-notification-type">
+        <radio label="&screenshot.radio.off;" value="off" />
+        <radio label="&screenshot.radio.popup;" value="popup" />
+      </radiogroup>
+    </groupbox>
 
-  <groupbox>
-    <caption label="&screenshot.caption.save.notification;" />
-    <radiogroup orient="horizontal" id="notification"
-        tooltiptext="&screenshot.radiogroup.disable.if.you.are.using.dlstatubar;">
-      <radio label="&screenshot.radio.off;" value="off" />
-      <radio label="&screenshot.radio.shown.popup;" value="popup" />
-    </radiogroup>
-  </groupbox>
-
-  <groupbox>
-    <caption label="&screenshot.caption.hotkeys;" />
-    <vbox>
-      <hbox style="vertical-align:middle">
-        <label
-            value="&screenshot.label.save.complete.page;"
-            style="min-width:140px;padding-top:3px"></label>
-        <textbox
-            id="screenshot_save_complete"
-            width="150"
-            onclick="this.select();"
-            onkeypress="return gScreenshoterOptions.handle_Hotkey(event, this);"
-            value="" />
-      </hbox>
-      <hbox style="vertical-align:middle">
-        <label
-            value="&screenshot.label.save.visible.page;"
-            style="min-width:140px;padding-top:3px"></label>
-        <textbox
-            id="screenshot_save_visible"
-            width="150"
-            onclick="this.select();"
-            onkeypress="return gScreenshoterOptions.handle_Hotkey(event, this);"
-            value="" />
-      </hbox>
-      <hbox style="vertical-align:middle">
-        <label
-            value="&screenshot.label.save.selection;"
-            style="min-width:140px;padding-top:3px"></label>
-        <textbox
-            id="screenshot_save_selection"
-            width="150"
-            onclick="this.select();"
-            onkeypress="return gScreenshoterOptions.handle_Hotkey(event, this);"
-            value="" />
-      </hbox>
-      <hbox flex="1" minheight="18" align="left">
-        <description
-            id="screenshot_duplicate_hotkey"
-            style="color: red;"
-            hidden="true"
-            value="&screenshot.description.hotkey.already.in.use;"
-            data-tag2="&screenshot.description.hotkey.already.in.use;"></description>
-      </hbox>
-    </vbox>
-  </groupbox>
+    <groupbox>
+      <caption label="&screenshot.caption.hotkeys;" />
+      <vbox>
+        <hbox style="vertical-align:middle">
+          <label
+              value="&screenshot.label.save.complete.page;"
+              style="min-width:140px;padding-top:3px"></label>
+          <textbox
+              id="screenshot_save_complete"
+              width="150"
+              onclick="this.select();"
+              onkeypress="return gScreenshoterOptions.handle_Hotkey(event, this);"
+              value="" />
+        </hbox>
+        <hbox style="vertical-align:middle">
+          <label
+              value="&screenshot.label.save.visible.page;"
+              style="min-width:140px;padding-top:3px"></label>
+          <textbox
+              id="screenshot_save_visible"
+              width="150"
+              onclick="this.select();"
+              onkeypress="return gScreenshoterOptions.handle_Hotkey(event, this);"
+              value="" />
+        </hbox>
+        <hbox style="vertical-align:middle">
+          <label
+              value="&screenshot.label.save.selection;"
+              style="min-width:140px;padding-top:3px"></label>
+          <textbox
+              id="screenshot_save_selection"
+              width="150"
+              onclick="this.select();"
+              onkeypress="return gScreenshoterOptions.handle_Hotkey(event, this);"
+              value="" />
+        </hbox>
+        <hbox flex="1" minheight="18" align="left">
+          <description
+              id="screenshot_duplicate_hotkey"
+              style="color: red;"
+              hidden="true"
+              value="&screenshot.description.hotkey.already.in.use;"
+              data-tag2="&screenshot.description.hotkey.already.in.use;"></description>
+        </hbox>
+      </vbox>
+    </groupbox>
   </prefpane>
 </prefwindow>
