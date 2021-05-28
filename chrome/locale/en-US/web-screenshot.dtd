@@ -18,7 +18,8 @@
 <!ENTITY screenshot.radio.complete.page "Complete page">
 <!ENTITY screenshot.radio.visible.portion "Visible portion">
 <!ENTITY screenshot.radio.selection "Selection">
-<!ENTITY screenshot.caption.default.folder "Default folder">
+<!ENTITY screenshot.caption.default.type "Default image type">
+<!ENTITY screenshot.caption.default.save.path "Default save path">
 <!ENTITY screenshot.button.browse "Browse">
 <!ENTITY screenshot.caption.filename.template "Filename template">
 <!ENTITY screenshot.radio.template.datetime "Date_Time">
@@ -29,8 +30,3 @@
 <!ENTITY screenshot.caption.notification "Notification">
 <!ENTITY screenshot.radio.off "Off">
 <!ENTITY screenshot.radio.popup "Popup">
-<!ENTITY screenshot.caption.hotkeys "Hotkeys (Leave empty to disable)">
-<!ENTITY screenshot.label.save.complete.page "Save complete page">
-<!ENTITY screenshot.label.save.visible.page "Save visible page">
-<!ENTITY screenshot.label.save.selection "Save selection">
-<!ENTITY screenshot.description.hotkey.already.in.use "Hotkey already in use ()">

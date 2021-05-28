@@ -1,13 +1,10 @@
 pref("extensions.web-screenshot.defaultAction", "save");
 pref("extensions.web-screenshot.defaultTarget", "getComplete");
-pref("extensions.web-screenshot.defaultFolder", "");
 pref("extensions.web-screenshot.defaultType", "image/png");
 pref("extensions.web-screenshot.JPGImageQuality", 92);
+pref("extensions.web-screenshot.defaultFolder", "");
 pref("extensions.web-screenshot.filenameTemplate", "domain");
 pref("extensions.web-screenshot.showInDLManager", true);
 pref("extensions.web-screenshot.showInContextMenu", true);
 pref("extensions.web-screenshot.notificationType", "popup");
-pref('extensions.web-screenshot.hotkey_save_complete', '{"modifiers":["accel"],"key":"M","keycode":""}');
-pref('extensions.web-screenshot.hotkey_save_visible', '{"modifiers":["accel","alt"],"key":"M","keycode":""}');
-pref('extensions.web-screenshot.hotkey_save_selection', '');
 pref("extensions.web-screenshot.fix_disable_zoom", false);

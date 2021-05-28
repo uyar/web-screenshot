@@ -49,7 +49,7 @@ var ScreenshoterSelector = {
 			'background-color:gray;opacity:0.3;position:fixed;z-index:999999; top:0;left:0;width:100%;height:100%;cursor:crosshair;');
 
 		doc.addEventListener("mousedown", ScreenshoterSelector.beginBoxSelect,  true);
-		doc.addEventListener("keydown",   ScreenshoterSelector.cancelBoxSelect, true);
+		doc.addEventListener("keydown", ScreenshoterSelector.cancelBoxSelect, true);
 
 		//Fix for FF17 bug (with <div contenteditable="true"></div>)
 		backgroundDiv.innerHTML = '<span style="display:inline-block;left: 0;position: absolute;top: 0;width: 1px;height: 1px;z-index: 999999;overflow: hidden;">.</span>';
@@ -123,11 +123,11 @@ var ScreenshoterSelector = {
 		var win = Screenshoter.getWindowsContent();
 		var doc = win.document;
 
-		doc.removeEventListener("mousedown", ScreenshoterSelector.beginBoxSelect,  true);
-		doc.removeEventListener("mousemove", ScreenshoterSelector.doBoxSelect,     true);
-		doc.removeEventListener("mouseup",   ScreenshoterSelector.endBoxSelect,    true);
-		doc.removeEventListener("scroll",    ScreenshoterSelector.scrollBoxDraw,   true);
-		doc.removeEventListener("keydown",   ScreenshoterSelector.cancelBoxSelect, true);
+		doc.removeEventListener("mousedown", ScreenshoterSelector.beginBoxSelect, true);
+		doc.removeEventListener("mousemove", ScreenshoterSelector.doBoxSelect, true);
+		doc.removeEventListener("mouseup",ScreenshoterSelector.endBoxSelect, true);
+		doc.removeEventListener("scroll", ScreenshoterSelector.scrollBoxDraw, true);
+		doc.removeEventListener("keydown", ScreenshoterSelector.cancelBoxSelect, true);
 
 		ScreenshoterSelector.finishSelect(event);
 	},
@@ -219,8 +219,6 @@ var Screenshoter = {
 
 		setTimeout(function() {
 			Screenshoter.refreshContextMenu();
-
-			gScreenshoterOptions.refreshHotkeys();
 		}, 300);
 	},
 
@@ -410,7 +408,7 @@ var Screenshoter = {
 		Screenshoter.processOperation(operations, file);
 	},
 
-	saveAs : function(operations, data) {
+	saveAs: function(operations, data) {
 		var canvas = data;
 
 		var fp = Components.classes["@mozilla.org/filepicker;1"]
@@ -469,7 +467,7 @@ var Screenshoter = {
 		Screenshoter.processOperation(operations, file);
 	},
 
-	copy : function(operations, data) {
+	copy: function(operations, data) {
 		var canvas = data;
 
 		var dataUrl = canvas.toDataURL("image/png", "");
@@ -484,7 +482,7 @@ var Screenshoter = {
 		Screenshoter.processOperation(operations, image, 1000);
 	},
 
-	finishCopy : function(operations, data) {
+	finishCopy: function(operations, data) {
 		var image = data;
 
 		document.popupNode = image;
@@ -496,25 +494,25 @@ var Screenshoter = {
 		Screenshoter.processOperation(operations, image, 200);
 	},
 
-	getDocWidth : function(doc) {
+	getDocWidth: function(doc) {
 		return (doc.compatMode == "CSS1Compat")
 				? doc.documentElement.scrollWidth
 				: doc.body.scrollWidth;
 	},
 
-	getDocHeight : function(doc) {
+	getDocHeight: function(doc) {
 		return (doc.compatMode == "CSS1Compat")
 				? doc.documentElement.scrollHeight
 				: doc.body.scrollHeight;
 	},
 
-	getViewportHeight : function(doc) {
+	getViewportHeight: function(doc) {
 		return (doc.compatMode == "CSS1Compat")
 				? doc.documentElement.clientHeight
 				: doc.body.clientHeight;
 	},
 
-	getViewportWidth : function(doc) {
+	getViewportWidth: function(doc) {
 		return (doc.compatMode == "CSS1Compat")
 				? doc.documentElement.clientWidth
 				: doc.body.clientWidth;
@@ -546,7 +544,7 @@ var Screenshoter = {
 		}
 	},
 
-	drawToCanvas : function(win, box) {
+	drawToCanvas: function(win, box) {
 		box.zoom = Screenshoter.getZoom();
 		box.width  = box.width  * box.zoom;
 		box.height = box.height * box.zoom;
@@ -580,7 +578,7 @@ var Screenshoter = {
 		return canvas;
 	},
 
-	getNewFileName : function(type) {
+	getNewFileName: function(type) {
 		var win = Screenshoter.getWindowsContent();
 		var doc = win.document;
 
@@ -633,13 +631,13 @@ var Screenshoter = {
 		return name;
 	},
 
-	getNewFile : function(type) {
+	getNewFile: function(type) {
 		var file = Screenshoter.getSaveFolder();
 		file.append(Screenshoter.getNewFileName(type));
 		return file;
 	},
 
-	getTempFile : function() {
+	getTempFile: function() {
 		var file = Components.classes["@mozilla.org/file/directory_service;1"]
 				.getService(Components.interfaces.nsIProperties).get("TmpD",
 						Components.interfaces.nsIFile);
@@ -648,7 +646,7 @@ var Screenshoter = {
 		return file;
 	},
 
-	saveCanvas : function(canvas, file, mimeType) {
+	saveCanvas: function(canvas, file, mimeType) {
 		// create a data url from the canvas and then create URIs of the source and targets
 		var io = Components.classes["@mozilla.org/network/io-service;1"]
 				.getService(Components.interfaces.nsIIOService);
@@ -713,7 +711,6 @@ var Screenshoter = {
 		}
 	},
 
-
 	showNotificationPopup: function(message, filedlg) {
 		var alertsService = Components.classes["@mozilla.org/alerts-service;1"]
 				.getService(Components.interfaces.nsIAlertsService);
@@ -746,7 +743,6 @@ var Screenshoter = {
 		};
 		return listener;
 	},
-
 
 	onButClick: function(event){
 		var operations = [Screenshoter.getDefaultTarget(), Screenshoter.getDefaultAction()];
@@ -868,6 +864,7 @@ var Screenshoter = {
 		}
 		return u;
 	},
+
 	isShown_in_contextmenu: function(){
 		var u = true;
 		try{
