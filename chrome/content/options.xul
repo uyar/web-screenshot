@@ -5,12 +5,7 @@
 <prefwindow
     id="web-screenshot-preferences"
     title="&screenshot.dialog.screenshot.options;"
-
-    buttons="accept,cancel"
-
     onload="gScreenshoterOptions.onLoad();"
-    ondialogaccept="return gScreenshoterOptions.doOk();"
-
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <script type="application/x-javascript"
       src="chrome://web-screenshot/content/options.js" />
@@ -107,7 +102,7 @@
                 preference="web-screenshot-jpg-image-quality"
                 value="80" min="1" max="100"
                 onchange="gScreenshoterOptions.updateJPGImageQuality(this.value);" />
-            <label id="JPGImageQuality_label" value="" control="JPGImageQuality" />
+            <label id="JPGImageQuality_label" value="" />
           </hbox>
         </vbox>
       </radiogroup>
