@@ -6,12 +6,10 @@
     id="web-screenshot-preferences"
     title="&screenshot.dialog.screenshot.options;"
 
-    buttons="extra2,accept,cancel"
-    buttonlabelextra2="&screenshot.dialog.reset;"
+    buttons="accept,cancel"
 
-    onload="gScreenshoterOptions.onLoad()"
+    onload="gScreenshoterOptions.onLoad();"
     ondialogaccept="return gScreenshoterOptions.doOk();"
-    ondialogextra2="return gScreenshoterOptions.resetDefaults()"
 
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <script type="application/x-javascript"

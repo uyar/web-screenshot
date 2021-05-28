@@ -20,7 +20,6 @@ var ScreenshoterSelector = {
 
 	cancelBoxSelect: function(event) {
 		if (event.keyCode == 27) {
-			//Screenshoter.myDump("cancel 27");
 			ScreenshoterSelector.cancel = true;
 
 			//cleanup
@@ -570,7 +569,6 @@ var Screenshoter = {
 		try {
 			ctx.drawWindow(win, box.x, box.y, box.width, box.height, "rgba(0,0,0,0)");
 		} catch(e) {
-			Screenshoter.myDump('Web Screenshot: Internal canvas.drawWindow call failed!');
 			Screenshoter.showNotificationPopup('Internal canvas.drawWindow call failed!', false);
 			return false;
 		}
@@ -704,8 +702,6 @@ var Screenshoter = {
 			}
 		}
 		if (Screenshoter.getNotificationType() == "popup") {
-			//Screenshoter.myDump("popup notification");
-
 			Screenshoter.imgfile = file;
 			Screenshoter.showNotificationPopup("Screenshot saved", true);
 		}
@@ -727,7 +723,6 @@ var Screenshoter = {
 			aFile: Screenshoter.imgfile,
 			observe: function(subject, topic, data) {
 				if (topic == 'alertclickcallback') {
-					//Screenshoter.myDump("popup click");
 					this.openDir(this.aFile);
 				}
 			},
@@ -923,13 +918,5 @@ var Screenshoter = {
 			is_e10s = prefs_global.getBoolPref('browser.tabs.remote.autostart');
 		} catch(e) {};
 		return is_e10s;
-	},
-
-	//if (Screenshoter.debugMode) Screenshoter.myDump('[DBG] test');
-	myDump: function(aMessage){
-		var consoleService = Components.classes["@mozilla.org/consoleservice;1"]
-				.getService(Components.interfaces.nsIConsoleService);
-		consoleService.logStringMessage("["+ aMessage +"]");
 	}
-
 };

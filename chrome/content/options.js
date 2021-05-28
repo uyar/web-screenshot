@@ -67,7 +67,7 @@ var gScreenshoterOptions = {
 	onLoad: function() {
 		gScreenshoterOptions.updateJPGImageQuality(gScreenshoterOptions.pref.getIntPref("JPGImageQuality"));
 
-		var savePath = gScreenshoterOptions.pref.getComplexValue("defaultFolder", Components.interfaces.nsISupportsString, str);
+		var savePath = gScreenshoterOptions.pref.getComplexValue("defaultFolder", Components.interfaces.nsISupportsString);
 		document.getElementById("defaultFolder").value = savePath;
 	},
 
@@ -113,35 +113,6 @@ var gScreenshoterOptions = {
 				break;
 			}
 		}
-	},
-
-	resetDefaults: function() {
-		var prefDef = Components.classes["@mozilla.org/preferences-service;1"]
-			.getService(Components.interfaces.nsIPrefService)
-			.getDefaultBranch("extensions.web-screenshot.");
-
-		gScreenshoterOptions.setDefaultsRadio("defaultAction", prefDef.getCharPref("defaultAction"));
-		gScreenshoterOptions.setDefaultsRadio("defaultTarget", prefDef.getCharPref("defaultTarget"));
-		gScreenshoterOptions.setDefaultsRadio("defaultType", prefDef.getCharPref("defaultType"));
-		gScreenshoterOptions.updateJPGImageQuality(prefDef.getIntPref("JPGImageQuality"));
-
-		var desktopPath = prefDef.getComplexValue("defaultFolder",
-					Components.interfaces.nsISupportsString).data;
-		document.getElementById("defaultFolder").value = desktopPath;
-		// if empty set path to desktop
-		if (!desktopPath) {
-			desktopPath = Screenshoter.getDefaultFolder();
-			document.getElementById("defaultFolder").value = desktopPath.path;
-		}
-
-		document.getElementById("showInDLManager").checked = prefDef.getBoolPref("showInDLManager");
-		document.getElementById("showInContextMenu").checked = prefDef.getBoolPref("showInContextMenu");
-
-		gScreenshoterOptions.setDefaultsRadio("notificationType", prefDef.getCharPref("notificationType"));
-
-		gScreenshoterOptions.setDefaultsRadio("filenameTemplate", prefDef.getCharPref("filenameTemplate"));
-
-		return gScreenshoterOptions.doOk();
 	},
 
 	changeSaveFolder: function() {
@@ -193,11 +164,5 @@ var gScreenshoterOptions = {
 	updateJPGImageQuality: function(value) {
 		document.getElementById('JPGImageQuality').value = value;
 		document.getElementById('JPGImageQuality_label').value = value + '%';
-	},
-
-	myDump: function(aMessage) {
-		var consoleService = Components.classes["@mozilla.org/consoleservice;1"]
-				.getService(Components.interfaces.nsIConsoleService);
-		consoleService.logStringMessage("["+ aMessage +"]");
 	}
 };
