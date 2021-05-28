@@ -204,11 +204,10 @@ var ScreenshoterSelector = {
 
 
 var Screenshoter = {
-	pref : Components.classes["@mozilla.org/preferences-service;1"]
+	pref: Components.classes["@mozilla.org/preferences-service;1"]
 			.getService(Components.interfaces.nsIPrefService)
 			.getBranch("extensions.web-screenshot."),
-	//prefBranch : null,
-	debugMode    : false,
+	debugMode: false,
 
 	onLoad: function(event) {
 		if (!("addObserver" in Screenshoter.pref)) {
@@ -745,47 +744,19 @@ var Screenshoter = {
 	},
 
 	getNotificationType: function(){
-		var type = "off";
-		try{
-			type = Screenshoter.pref.getCharPref("notificationType");
-		} catch(e){
-		}
-		if (type!="off" && type!="popup")
-			type = "off";
-		return type;
+		return Screenshoter.pref.getCharPref("notificationType");
 	},
 
 	getDefaultMimeType: function() {
-		var type = "image/png";
-		try{
-			type = Screenshoter.pref.getCharPref("defaultType");
-		} catch(e){
-		}
-		if (type!="image/png" && type!="image/jpeg")
-			type = "image/png";
-		return type;
+		return Screenshoter.pref.getCharPref("defaultType");
 	},
 
 	getDefaultTarget: function(){
-		var target = "getComplete";
-		try{
-			target = Screenshoter.pref.getCharPref("defaultTarget");
-		} catch(e){
-		}
-		if (!target)
-			target = "getComplete";
-		return target;
+		return Screenshoter.pref.getCharPref("defaultTarget");
 	},
 
 	getDefaultAction: function(){
-		var action = "save";
-		try{
-			action = Screenshoter.pref.getCharPref("defaultAction");
-		} catch(e){
-		}
-		if (!action)
-			action = "save";
-		return action;
+		return Screenshoter.pref.getCharPref("defaultAction");
 	},
 
 	getDefaultFolder: function() {
@@ -806,67 +777,28 @@ var Screenshoter = {
 	},
 
 	getSaveFolder: function(){
-		var fileName = null;
-		try {
-			fileName = Screenshoter.pref.getComplexValue("defaultFolder",
+		var fileName = Screenshoter.pref.getComplexValue("defaultFolder",
 					Components.interfaces.nsISupportsString).data;
-		} catch (e) {
+		if (fileName == null || fileName.length == 0) {
+			return Screenshoter.getDefaultFolder();
 		}
 
-		var file;
-		if (fileName == null || fileName.length == 0) {
-			file = Screenshoter.getDefaultFolder();
-		}
-		else {
-			file = Components.classes["@mozilla.org/file/local;1"]
+		var file = Components.classes["@mozilla.org/file/local;1"]
 						.createInstance(Components.interfaces.nsILocalFile);
-			file.initWithPath(fileName);
-			if (file.exists()){
-				if (!file.isWritable()|| !file.isDirectory())
-					file = Screenshoter.getDefaultDir();
-			}
-			else{
-				try{
-					file.create(Components.interfaces.nsIFile.DIRECTORY_TYPE, parseInt("0775", 8));
-				} catch(e){
-					file = Screenshoter.getDefaultDir();
-				}
-			}
+		file.initWithPath(fileName);
+		if (!file.exists() || !file.isDirectory() || !file.isWritable()) {
+			alert("Target folder is not valid, saving to desktop.")
+			return Screenshoter.getDefaultFolder();
 		}
-		if (!file.exists()) {
-			file.create(Components.interfaces.nsIFile.DIRECTORY_TYPE, parseInt("0775", 8));
-		}
-		Screenshoter.setUnicharPref("defaultFolder", file.path);
 		return file;
 	},
 
-	setUnicharPref: function(prefName, value) {
-		var str = Components.classes["@mozilla.org/supports-string;1"]
-					.createInstance(Components.interfaces.nsISupportsString);
-		str.data = value;
-		Screenshoter.pref.setComplexValue(prefName, Components.interfaces.nsISupportsString, str);
-	},
-
-	setSaveFolder: function(dir) {
-		Screenshoter.setUnicharPref("defaultFolder", dir);
-	},
-
 	isDownloadManagerUsed: function(){
-		var u = true;
-		try{
-			u = Screenshoter.pref.getBoolPref("showInDLManager");
-		} catch(e){
-		}
-		return u;
+		return Screenshoter.pref.getBoolPref("showInDLManager");
 	},
 
 	isShown_in_contextmenu: function(){
-		var u = true;
-		try{
-			u = Screenshoter.pref.getBoolPref("showInContextMenu");
-		} catch(e){
-		}
-		return u;
+		return Screenshoter.pref.getBoolPref("showInContextMenu");
 	},
 
 	getJPGImageQuality: function(mimeType){
@@ -882,14 +814,7 @@ var Screenshoter = {
 	},
 
 	getFileTemplate: function() {
-		var value = "domain";
-		try{
-			value = Screenshoter.pref.getCharPref("filenameTemplate");
-		} catch(e){
-		}
-		if (!value)
-			value = "domain";
-		return value;
+		return Screenshoter.pref.getCharPref("filenameTemplate");
 	},
 
 	refreshContextMenu: function() {
@@ -905,7 +830,6 @@ var Screenshoter = {
 	},
 
 	getWindowsContent: function() {
-		//var win = window._content;
 		var win = window.content;
 		return win;
 	}
