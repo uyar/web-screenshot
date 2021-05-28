@@ -31,7 +31,7 @@
       <preference
           id="web-screenshot-default-folder"
           name="extensions.web-screenshot.defaultFolder"
-          type="string" />
+          type="unichar" />
       <preference
           id="web-screenshot-filename-template"
           name="extensions.web-screenshot.filenameTemplate"
@@ -113,7 +113,7 @@
     <groupbox>
       <caption label="&screenshot.caption.default.save.path;" />
       <hbox>
-        <textbox id="defaultFolder" flex="1"
+        <textbox id="defaultFolder" flex="1" readonly="true"
             preference="web-screenshot-default-folder" />
         <button label="&screenshot.button.browse;"
             oncommand="gScreenshoterOptions.changeSaveFolder();" />
@@ -133,13 +133,11 @@
       <checkbox
           id="showInDLManager"
           preference="web-screenshot-show-in-dlmanager"
-          label="&screenshot.checkbox.show.in.dlmanager;"
-          checked="true" />
+          label="&screenshot.checkbox.show.in.dlmanager;" />
       <checkbox
           id="showInContextMenu"
           preference="web-screenshot-show-in-context-menu"
           label="&screenshot.checkbox.show.in.context.menu;"
-          checked="true"
           observes="use_incontextmenu" />
     </groupbox>
 

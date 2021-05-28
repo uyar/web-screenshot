@@ -28,7 +28,7 @@ var ScreenshoterSelector = {
 		}
 	},
 
-	startSelect : function() {
+	startSelect: function() {
 		if (ScreenshoterSelector.isSelecting())
 			return;
 
@@ -58,7 +58,7 @@ var ScreenshoterSelector = {
 		body.appendChild(ScreenshoterDiv);
 	},
 
-	beginBoxSelect : function(event) {
+	beginBoxSelect: function(event) {
 		var win = Screenshoter.getWindowsContent();
 		var doc = win.document;
 		var selDiv = doc.getElementById(ScreenshoterSelector.SEL_DIV);
@@ -93,7 +93,7 @@ var ScreenshoterSelector = {
 		doc.addEventListener("scroll",    ScreenshoterSelector.scrollBoxDraw,   true);
 	},
 
-	doBoxSelect : function(event) {
+	doBoxSelect: function(event) {
 		var win = Screenshoter.getWindowsContent();
 		var doc = win.document;
 		var selDiv = doc.getElementById(ScreenshoterSelector.SEL_DIV);
@@ -118,7 +118,7 @@ var ScreenshoterSelector = {
 		selDiv.innerHTML = '<nobr style="color: #FFFFFF;display: inline-block; font: 14px/14px Tahoma,sans-serif; background: rgba(200,200,200,0.2); vertical-align: top;">'+ width +'x'+ height +'</nobr>';
 	},
 
-	endBoxSelect : function(event) {
+	endBoxSelect: function(event) {
 		var win = Screenshoter.getWindowsContent();
 		var doc = win.document;
 
@@ -210,7 +210,7 @@ var Screenshoter = {
 	//prefBranch : null,
 	debugMode    : false,
 
-	onLoad : function(event) {
+	onLoad: function(event) {
 		if (!("addObserver" in Screenshoter.pref)) {
 			Screenshoter.pref.QueryInterface(Components.interfaces.nsIPrefBranch2);
 		}
@@ -840,7 +840,7 @@ var Screenshoter = {
 		return file;
 	},
 
-	setUnicharPref : function(prefName, value) {
+	setUnicharPref: function(prefName, value) {
 		var str = Components.classes["@mozilla.org/supports-string;1"]
 					.createInstance(Components.interfaces.nsISupportsString);
 		str.data = value;
@@ -908,15 +908,5 @@ var Screenshoter = {
 		//var win = window._content;
 		var win = window.content;
 		return win;
-	},
-
-	get_is_e10s: function() {
-		var prefs_global = Components.classes["@mozilla.org/preferences-service;1"]
-				.getService(Components.interfaces.nsIPrefBranch);
-		var is_e10s = false;
-		try {
-			is_e10s = prefs_global.getBoolPref('browser.tabs.remote.autostart');
-		} catch(e) {};
-		return is_e10s;
 	}
 };
