@@ -648,14 +648,7 @@ var Screenshoter = {
 		var io = Components.classes["@mozilla.org/network/io-service;1"]
 				.getService(Components.interfaces.nsIIOService);
 
-
-		//https://bugzilla.mozilla.org/show_bug.cgi?id=564388
-		//Firefox <=6? has known bug - toDataURL() fails when has params
-		try {
-			var source = io.newURI(canvas.toDataURL(mimeType, Screenshoter.getJPGImageQuality(mimeType)), "UTF8", null);
-		} catch(e) {
-			var source = io.newURI(canvas.toDataURL(mimeType), "UTF8", null);
-		}
+		var source = io.newURI(canvas.toDataURL(mimeType, Screenshoter.getJPGImageQuality(mimeType)), "UTF8", null);
 
 		var target = io.newFileURI(file)
 
@@ -687,19 +680,7 @@ var Screenshoter = {
 			};
 		} catch(e) {};
 
-		try {
-			// for Firefox 18.0 - 36.0
-			persist.saveURI(source, null, null, null, null, file, nsILoadContext);
-		} catch(e) {
-			try {
-				// for Firefox 36.0+
-				persist.saveURI(source, null, null, null, null, null, file, nsILoadContext);
-			}
-			catch(e) {
-				// for Firefox 4.0 - 18.0
-				persist.saveURI(source, null, null, null, null, file);
-			}
-		}
+		persist.saveURI(source, null, null, null, null, null, file, nsILoadContext);
 		if (Screenshoter.getNotificationType() == "popup") {
 			Screenshoter.imgfile = file;
 			Screenshoter.showNotificationPopup("Screenshot saved", true);

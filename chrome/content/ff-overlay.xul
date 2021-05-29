@@ -2,12 +2,9 @@
 <?xml-stylesheet type="text/css" href="chrome://web-screenshot/skin/web-screenshot.css"?>
 <!DOCTYPE window SYSTEM "chrome://web-screenshot/locale/web-screenshot.dtd">
 <overlay id="screenshot-overlay"
-    xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <script type="application/x-javascript"
       src="chrome://web-screenshot/content/ff-overlay.js" />
-  <script type="application/x-javascript"
-      src="chrome://web-screenshot/content/options.js" />
   <script type="application/x-javascript">
     <![CDATA[
       window.addEventListener("load", function(event){Screenshoter.onLoad(event);}, true);
@@ -58,8 +55,6 @@
         id="screenshot_save_complete_png_cmd"
         oncommand="Screenshoter.saveCompletePng()" />
   </commandset>
-
-  <stack><keyset id="screenshot_keyset"/></stack>
 
   <toolbarpalette id="BrowserToolbarPalette">
     <toolbarbutton
