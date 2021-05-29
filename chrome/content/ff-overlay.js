@@ -50,9 +50,6 @@ var ScreenshoterSelector = {
 		doc.addEventListener("mousedown", ScreenshoterSelector.beginBoxSelect,  true);
 		doc.addEventListener("keydown", ScreenshoterSelector.cancelBoxSelect, true);
 
-		//Fix for FF17 bug (with <div contenteditable="true"></div>)
-		backgroundDiv.innerHTML = '<span style="display:inline-block;left: 0;position: absolute;top: 0;width: 1px;height: 1px;z-index: 999999;overflow: hidden;">.</span>';
-
 		ScreenshoterDiv.appendChild(backgroundDiv);
 
 		body.appendChild(ScreenshoterDiv);
@@ -518,12 +515,6 @@ var Screenshoter = {
 
 	getZoom: function() {
 		var zoom = 1.0;
-		try{
-			var disabled = Screenshoter.pref.getBoolPref("fix_disable_zoom");
-			if (disabled)
-				return zoom;
-		} catch(e){}
-
 		try {
 			var docViewer = gBrowser.selectedBrowser.markupDocumentViewer;
 			zoom = docViewer.fullZoom;

@@ -7,4 +7,3 @@ pref("extensions.web-screenshot.filenameTemplate", "domain");
 pref("extensions.web-screenshot.showInDLManager", true);
 pref("extensions.web-screenshot.showInContextMenu", true);
 pref("extensions.web-screenshot.notificationType", "popup");
-pref("extensions.web-screenshot.fix_disable_zoom", false);
