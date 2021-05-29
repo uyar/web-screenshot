@@ -10,7 +10,7 @@
     <em:contributor>spriditis</em:contributor>
     <em:contributor>Alexei Matveev</em:contributor>
     <em:homepageURL>https://addons.palemoon.org/addon/web-screenshot/</em:homepageURL>
-    <em:iconURL>chrome://web-screenshot/skin/logo.png</em:iconURL>
+    <em:iconURL>chrome://web-screenshot/skin/camera.svg</em:iconURL>
     <em:optionsURL>chrome://web-screenshot/content/options.xul</em:optionsURL>
 
     <!-- Pale Moon -->

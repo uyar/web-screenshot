@@ -683,9 +683,9 @@ var Screenshoter = {
 				.getService(Components.interfaces.nsIAlertsService);
 		try {
 			if (filedlg)
-				alertsService.showAlertNotification("chrome://web-screenshot/skin/shot_24x24.png", "Web Screenshot", message, true, "", Screenshoter.createAlertListener(), "Web Screenshot notification");
+				alertsService.showAlertNotification("chrome://web-screenshot/skin/camera.svg", "Web Screenshot", message, true, "", Screenshoter.createAlertListener(), "Web Screenshot notification");
 			else
-				alertsService.showAlertNotification("chrome://web-screenshot/skin/shot_24x24.png", "Web Screenshot", message, false, "", null, "Web Screenshot notification");
+				alertsService.showAlertNotification("chrome://web-screenshot/skin/camera.svg", "Web Screenshot", message, false, "", null, "Web Screenshot notification");
 		} catch(e) {}
 	},
 

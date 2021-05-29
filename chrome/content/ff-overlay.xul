@@ -118,7 +118,7 @@
         id="screenshot-contextmenu1"
         insertafter="context-sep-selectall,context-sep-stop,context-sep-copylink"
         class="menu-iconic"
-        image="chrome://web-screenshot/skin/shot_16x16.png">
+        image="chrome://web-screenshot/skin/camera.svg">
       <menupopup>
         <menu label="&screenshot.complete.page.label;">
           <menupopup>

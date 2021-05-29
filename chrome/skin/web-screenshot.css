@@ -1,9 +1,9 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
 #screenshot-toolbar-button {
-  list-style-image: url('chrome://web-screenshot/skin/shot_24x24.png');
+  list-style-image: url('chrome://web-screenshot/skin/camera.svg');
 }
 
 toolbar[iconsize="small"] #screenshot-toolbar-button {
-  list-style-image: url("chrome://web-screenshot/skin/shot_16x16.png");
+  list-style-image: url("chrome://web-screenshot/skin/camera.svg");
 }
